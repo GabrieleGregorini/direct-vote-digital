@@ -10,31 +10,31 @@ const Index = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-gray-50">
       <Header />
       
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-democracy-blue to-democracy-purple overflow-hidden">
-        <div className="absolute inset-0 bg-black/10"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+      {/* Hero Section - Identical to graphic */}
+      <section className="bg-[#1e3a8a] text-white relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="text-white animate-fade-in">
-              <div className="mb-6">
-                <span className="inline-block px-4 py-2 bg-white/20 rounded-full text-sm font-medium backdrop-blur-sm">
-                  🗳️ Partecipa attivamente alle decisioni del tuo paese attraverso una piattaforma sicura, trasparente e accessibile
-                </span>
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <h1 className="text-4xl lg:text-5xl font-bold leading-tight">
+                  Direct Democracy
+                </h1>
+                <h2 className="text-xl lg:text-2xl font-medium text-blue-100">
+                  Democrazia Partecipativa Digitale
+                </h2>
+                <p className="text-lg text-blue-50 leading-relaxed">
+                  Partecipa attivamente alle decisioni del tuo paese attraverso una piattaforma sicura, trasparente e accessibile per tutti i cittadini
+                </p>
               </div>
-              <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
-                Direct Democracy
-              </h1>
-              <p className="text-xl lg:text-2xl mb-8 text-white/90 leading-relaxed">
-                Partecipa attivamente alle decisioni del tuo paese attraverso una piattaforma sicura, trasparente e accessibile
-              </p>
+              
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
                   onClick={() => navigate('/sondaggi')}
                   size="lg" 
-                  className="bg-white text-democracy-blue hover:bg-white/90 font-semibold px-8 py-4 text-lg"
+                  className="bg-white text-[#1e3a8a] hover:bg-gray-100 font-semibold px-8 py-4 text-lg shadow-lg"
                 >
                   Esplora i Sondaggi
                 </Button>
@@ -42,122 +42,140 @@ const Index = () => {
                   onClick={() => navigate('/login')}
                   size="lg" 
                   variant="outline" 
-                  className="border-white text-white hover:bg-white/10 font-semibold px-8 py-4 text-lg"
+                  className="border-2 border-white text-white hover:bg-white/10 font-semibold px-8 py-4 text-lg"
                 >
-                  Accedi
+                  Accedi con SPID
                 </Button>
               </div>
             </div>
             
-            <div className="relative animate-scale-in">
-              <Card className="bg-white/95 backdrop-blur-sm border-0 shadow-2xl">
-                <CardHeader className="text-center pb-3">
-                  <div className="w-16 h-16 bg-democracy-blue rounded-full mx-auto mb-4 flex items-center justify-center">
-                    <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
-                      <span className="text-democracy-blue font-bold text-xl">D</span>
+            <div className="relative">
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+                <div className="text-center space-y-6">
+                  <div className="w-20 h-20 bg-white rounded-full mx-auto flex items-center justify-center">
+                    <div className="w-16 h-16 bg-[#1e3a8a] rounded-full flex items-center justify-center">
+                      <span className="text-white font-bold text-2xl">🗳️</span>
                     </div>
                   </div>
-                  <CardTitle className="text-xl font-bold text-democracy-blue">
-                    Direct Democracy Project
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="text-center text-gray-600">
-                  <p className="mb-4">
-                    Benvenuto sulla piattaforma di democrazia partecipativa digitale
-                  </p>
+                  <div>
+                    <h3 className="text-2xl font-bold mb-2">Vota Ora</h3>
+                    <p className="text-blue-100 mb-4">Partecipa ai sondaggi attivi</p>
+                  </div>
                   <div className="grid grid-cols-3 gap-4 text-sm">
                     <div className="text-center">
-                      <div className="text-2xl mb-1">🔒</div>
-                      <div>Sicuro</div>
+                      <div className="text-3xl mb-2">🔒</div>
+                      <div className="text-blue-100">Sicuro</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl mb-1">📊</div>
-                      <div>Trasparente</div>
+                      <div className="text-3xl mb-2">📊</div>
+                      <div className="text-blue-100">Trasparente</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl mb-1">🌐</div>
-                      <div>Accessibile</div>
+                      <div className="text-3xl mb-2">⚡</div>
+                      <div className="text-blue-100">Real-time</div>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-white dark:bg-gray-800">
+      {/* Stats Section - Clean white background */}
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
               La Democrazia in Numeri
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Statistiche in tempo reale della partecipazione democratica
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Dati aggiornati in tempo reale della partecipazione democratica italiana
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <StatsCard
-              title="Partecipazione Attiva"
-              value="125,847"
-              description="Cittadini registrati"
+              title="Cittadini Attivi"
+              value="2,847,391"
+              description="Utenti registrati e verificati"
               icon="👥"
-              trend={{ value: 12, isPositive: true }}
+              trend={{ value: 12.3, isPositive: true }}
               color="blue"
             />
             <StatsCard
-              title="Sicurezza Garantita"
-              value="99.9%"
-              description="Uptime piattaforma"
-              icon="🔒"
-              trend={{ value: 0.1, isPositive: true }}
+              title="Sondaggi Completati"
+              value="15,247"
+              description="Consultazioni pubbliche concluse"
+              icon="📊"
+              trend={{ value: 8.7, isPositive: true }}
               color="green"
             />
             <StatsCard
-              title="Analisi Dati"
-              value="1,250"
-              description="Sondaggi completati"
-              icon="📊"
-              trend={{ value: 8, isPositive: true }}
+              title="Voti Espressi"
+              value="47,892,156"
+              description="Opinioni raccolte totali"
+              icon="🗳️"
+              trend={{ value: 15.2, isPositive: true }}
               color="purple"
             />
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-16 bg-gray-50 dark:bg-gray-900">
+      {/* Main Features Section */}
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-              Come Funziona
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Come Funziona la Piattaforma
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Quattro semplici passi per partecipare alla democrazia digitale
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Un processo semplice e sicuro per far sentire la tua voce nelle decisioni che contano
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { step: 1, title: "Registrati", desc: "Accedi con SPID o CIE per garantire sicurezza", icon: "📝" },
-              { step: 2, title: "Esplora", desc: "Sfoglia i sondaggi per categoria e regione di interesse", icon: "🔍" },
-              { step: 3, title: "Vota", desc: "Esprimi la tua opinione sui temi che ti stanno a cuore", icon: "🗳️" },
-              { step: 4, title: "Analizza", desc: "Visualizza risultati e statistiche aggiornate in tempo reale", icon: "📈" }
+              { 
+                step: "01", 
+                title: "Registrati", 
+                desc: "Accesso sicuro con SPID, CIE o eIDAS per garantire l'identità digitale", 
+                icon: "🆔",
+                color: "bg-blue-500"
+              },
+              { 
+                step: "02", 
+                title: "Esplora", 
+                desc: "Naviga tra i sondaggi per categoria, regione e temi di interesse", 
+                icon: "🔍",
+                color: "bg-green-500"
+              },
+              { 
+                step: "03", 
+                title: "Partecipa", 
+                desc: "Esprimi la tua opinione sui temi politici, economici e sociali", 
+                icon: "✍️",
+                color: "bg-purple-500"
+              },
+              { 
+                step: "04", 
+                title: "Monitora", 
+                desc: "Visualizza risultati in tempo reale e l'impatto delle tue scelte", 
+                icon: "📈",
+                color: "bg-orange-500"
+              }
             ].map((item, index) => (
-              <Card key={index} className="text-center hover:shadow-lg transition-all duration-300 animate-fade-in">
-                <CardContent className="pt-6">
-                  <div className="w-16 h-16 bg-democracy-blue/10 rounded-full mx-auto mb-4 flex items-center justify-center">
+              <Card key={index} className="text-center hover:shadow-lg transition-all duration-300 border-0 shadow-md">
+                <CardContent className="pt-8 pb-6">
+                  <div className={`w-16 h-16 ${item.color} rounded-full mx-auto mb-6 flex items-center justify-center`}>
                     <span className="text-3xl">{item.icon}</span>
                   </div>
-                  <div className="w-8 h-8 bg-democracy-blue text-white rounded-full mx-auto mb-3 flex items-center justify-center font-bold">
-                    {item.step}
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  <div className="text-sm font-bold text-gray-500 mb-2">{item.step}</div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
                     {item.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm">
+                  <p className="text-gray-600 text-sm leading-relaxed">
                     {item.desc}
                   </p>
                 </CardContent>
@@ -167,76 +185,156 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 bg-democracy-blue">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-white mb-4">
-            Resta Aggiornato
-          </h2>
-          <p className="text-xl text-white/90 mb-8">
-            Iscriviti alla newsletter per ricevere notifiche sui nuovi sondaggi e sugli aggiornamenti della piattaforma
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="La tua email"
-              className="flex-1 px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-white/50 outline-none"
-            />
-            <Button className="bg-white text-democracy-blue hover:bg-white/90 font-semibold px-6">
-              Iscriviti
+      {/* Current Polls Preview */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center mb-12">
+            <div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Sondaggi in Evidenza
+              </h2>
+              <p className="text-lg text-gray-600">
+                Partecipa ai referendum e consultazioni più importanti del momento
+              </p>
+            </div>
+            <Button 
+              onClick={() => navigate('/sondaggi')}
+              className="bg-[#1e3a8a] hover:bg-blue-800 text-white"
+            >
+              Vedi Tutti
             </Button>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Riforma Fiscale 2025",
+                category: "Economia",
+                participants: "45,783",
+                percentage: 67,
+                status: "Attivo",
+                urgency: "high"
+              },
+              {
+                title: "Trasporti Pubblici Gratuiti",
+                category: "Sociale",
+                participants: "32,156",
+                percentage: 73,
+                status: "Attivo",
+                urgency: "medium"
+              },
+              {
+                title: "Transizione Energetica",
+                category: "Ambiente",
+                participants: "58,429",
+                percentage: 81,
+                status: "Scadenza 3 giorni",
+                urgency: "urgent"
+              }
+            ].map((poll, index) => (
+              <Card key={index} className="hover:shadow-lg transition-all duration-300 border-0 shadow-md">
+                <CardHeader className="pb-3">
+                  <div className="flex justify-between items-start mb-3">
+                    <span className={`text-xs px-3 py-1 rounded-full font-medium ${
+                      poll.urgency === 'urgent' ? 'bg-red-100 text-red-700' :
+                      poll.urgency === 'high' ? 'bg-orange-100 text-orange-700' :
+                      'bg-blue-100 text-blue-700'
+                    }`}>
+                      {poll.category}
+                    </span>
+                    <span className="text-xs text-gray-500">{poll.status}</span>
+                  </div>
+                  <CardTitle className="text-lg font-bold text-gray-900">
+                    {poll.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div>
+                      <div className="flex justify-between text-sm mb-2">
+                        <span className="text-gray-600">Consenso</span>
+                        <span className="font-bold text-gray-900">{poll.percentage}%</span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div 
+                          className="bg-[#1e3a8a] h-2 rounded-full transition-all duration-300"
+                          style={{ width: `${poll.percentage}%` }}
+                        ></div>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center text-sm text-gray-500">
+                      <span>{poll.participants} partecipanti</span>
+                      <Button size="sm" className="bg-[#1e3a8a] hover:bg-blue-800 text-white">
+                        Partecipa
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
+      <footer className="bg-[#1e3a8a] text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 bg-democracy-blue rounded-full flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">D.D.P</span>
+            <div className="space-y-4">
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+                  <span className="text-[#1e3a8a] font-bold text-lg">DD</span>
                 </div>
-                <span className="font-semibold">Direct Democracy Project</span>
+                <div>
+                  <div className="font-bold text-lg">Direct Democracy</div>
+                  <div className="text-blue-200 text-sm">Democrazia Partecipativa</div>
+                </div>
               </div>
-              <p className="text-gray-400 text-sm">
-                Piattaforma di democrazia partecipativa digitale per una società più inclusiva e trasparente.
+              <p className="text-blue-100 text-sm leading-relaxed">
+                Piattaforma digitale per la partecipazione democratica diretta dei cittadini italiani.
               </p>
             </div>
             
             <div>
-              <h4 className="font-semibold mb-3">Seguici su</h4>
-              <div className="flex space-x-4">
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">📘</a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">📸</a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">🔗</a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">🎵</a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">▶️</a>
-              </div>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold mb-3">Direct Democracy Project ©</h4>
-              <ul className="text-gray-400 text-sm space-y-1">
-                <li><a href="#" className="hover:text-white transition-colors">Cookie Policy</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Note Legali</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Trattamento Dati</a></li>
+              <h4 className="font-semibold mb-4 text-lg">Piattaforma</h4>
+              <ul className="space-y-2 text-blue-100">
+                <li><a href="/sondaggi" className="hover:text-white transition-colors">Sondaggi</a></li>
+                <li><a href="/dashboard" className="hover:text-white transition-colors">Dashboard</a></li>
+                <li><a href="/news" className="hover:text-white transition-colors">News</a></li>
+                <li><a href="/login" className="hover:text-white transition-colors">Accedi</a></li>
               </ul>
             </div>
             
             <div>
-              <h4 className="font-semibold mb-3">Contatti</h4>
-              <p className="text-gray-400 text-sm">
-                Gabriele Gregorini<br/>
-                gabrielegregorini7@gmail.com
-              </p>
+              <h4 className="font-semibold mb-4 text-lg">Informazioni</h4>
+              <ul className="space-y-2 text-blue-100">
+                <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Termini di Uso</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Sicurezza</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">FAQ</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="font-semibold mb-4 text-lg">Contatti</h4>
+              <div className="space-y-3 text-blue-100">
+                <div>
+                  <div className="font-medium">Gabriele Gregorini</div>
+                  <div className="text-sm">Sviluppatore</div>
+                </div>
+                <div>
+                  <a href="mailto:gabrielegregorini7@gmail.com" className="hover:text-white transition-colors">
+                    gabrielegregorini7@gmail.com
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
           
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
-            © 2024 Direct Democracy Project. Tutti i diritti riservati.
+          <div className="border-t border-blue-700 mt-8 pt-8 text-center">
+            <p className="text-blue-200 text-sm">
+              © 2024 Direct Democracy Project. Tutti i diritti riservati. Piattaforma conforme alle normative GDPR e AgID.
+            </p>
           </div>
         </div>
       </footer>

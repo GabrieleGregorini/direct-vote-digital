@@ -26,12 +26,15 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				primary: {
-					DEFAULT: '#4F46E5',
+					DEFAULT: '#1e3a8a',
 					foreground: '#FFFFFF',
-					50: '#F0F0FF',
-					100: '#E0E0FF',
-					500: '#4F46E5',
-					600: '#3B38C7',
+					50: '#eff6ff',
+					100: '#dbeafe',
+					500: '#1e3a8a',
+					600: '#1e40af',
+					700: '#1d4ed8',
+					800: '#1e40af',
+					900: '#1e3a8a',
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
@@ -67,14 +70,15 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Direct Democracy custom colors
+				// Direct Democracy specific colors matching the graphic
 				democracy: {
-					blue: '#4F46E5',
-					lightBlue: '#60A5FA',
-					green: '#10B981',
-					yellow: '#F59E0B',
-					red: '#EF4444',
-					purple: '#8B5CF6',
+					blue: '#1e3a8a',
+					lightBlue: '#3b82f6',
+					green: '#059669',
+					yellow: '#d97706',
+					red: '#dc2626',
+					purple: '#7c3aed',
+					orange: '#ea580c',
 				}
 			},
 			borderRadius: {
