@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Header from "@/components/Header";
-import PollCard from "@/components/PollCard";
 
 const Sondaggi = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -20,6 +20,7 @@ const Sondaggi = () => {
       description: 'Valutazione della proposta di riforma fiscale con nuove aliquote e detrazioni per famiglie e imprese.',
       category: 'fiscale' as const,
       status: 'attivo' as const,
+      color: 'yellow',
       options: [
         { label: 'Favorevole', percentage: 62, votes: 15847 },
         { label: 'Contrario', percentage: 32, votes: 8174 },
@@ -35,6 +36,7 @@ const Sondaggi = () => {
       description: 'Modifica dei criteri per l\'acquisizione della cittadinanza italiana per cittadini stranieri residenti.',
       category: 'sociale' as const,
       status: 'urgente' as const,
+      color: 'teal',
       options: [
         { label: 'Si, con riduzione anni', percentage: 57, votes: 14250 },
         { label: 'No, mantenere attuale', percentage: 38, votes: 9500 },
@@ -50,6 +52,7 @@ const Sondaggi = () => {
       description: 'Investimenti per accelerare la transizione verso energie rinnovabili e riduzione emissioni CO2.',
       category: 'ambiente' as const,
       status: 'attivo' as const,
+      color: 'green',
       options: [
         { label: 'Incrementare investimenti', percentage: 73, votes: 18250 },
         { label: 'Mantenere livelli attuali', percentage: 22, votes: 5500 },
@@ -58,36 +61,6 @@ const Sondaggi = () => {
       totalVotes: 25000,
       endDate: '10/03/2025',
       region: 'Veneto'
-    },
-    {
-      id: '4',
-      title: 'Trasporti Pubblici Gratuiti',
-      description: 'Proposta di rendere gratuiti i trasporti pubblici per under 25 e over 65 anni.',
-      category: 'trasporti' as const,
-      status: 'attivo' as const,
-      options: [
-        { label: 'Favorevole', percentage: 68, votes: 17000 },
-        { label: 'Solo per alcune fasce', percentage: 24, votes: 6000 },
-        { label: 'Contrario', percentage: 8, votes: 2000 }
-      ],
-      totalVotes: 25000,
-      endDate: '20/02/2025',
-      region: 'Emilia-Romagna'
-    },
-    {
-      id: '5',
-      title: 'Ridurre le Vacanze Estive',
-      description: 'Proposta di ridurre le vacanze estive scolastiche e distribuire i giorni di pausa durante l\'anno.',
-      category: 'sociale' as const,
-      status: 'attivo' as const,
-      options: [
-        { label: 'Favorevole', percentage: 45, votes: 11250 },
-        { label: 'Contrario', percentage: 48, votes: 12000 },
-        { label: 'Indeciso', percentage: 7, votes: 1750 }
-      ],
-      totalVotes: 25000,
-      endDate: '05/03/2025',
-      region: 'Toscana'
     }
   ];
 
@@ -105,190 +78,194 @@ const Sondaggi = () => {
     return matchesSearch && matchesRegion && matchesCategory;
   });
 
-  const handleVote = (pollId: string) => {
-    console.log(`Voting on poll: ${pollId}`);
-    // Qui implementeremmo la logica di voto
-  };
-
-  const handleViewDetails = (pollId: string) => {
-    console.log(`Viewing details for poll: ${pollId}`);
-    // Qui implementeremmo la navigazione ai dettagli
+  const getColorClasses = (color: string) => {
+    switch (color) {
+      case 'yellow':
+        return {
+          bg: 'bg-yellow-50',
+          header: 'bg-yellow-400',
+          button: 'bg-yellow-400 hover:bg-yellow-500',
+          progress: 'bg-yellow-400'
+        };
+      case 'teal':
+        return {
+          bg: 'bg-teal-50',
+          header: 'bg-teal-500',
+          button: 'bg-teal-500 hover:bg-teal-600',
+          progress: 'bg-teal-500'
+        };
+      case 'green':
+        return {
+          bg: 'bg-green-50',
+          header: 'bg-green-500',
+          button: 'bg-green-500 hover:bg-green-600',
+          progress: 'bg-green-500'
+        };
+      default:
+        return {
+          bg: 'bg-blue-50',
+          header: 'bg-blue-500',
+          button: 'bg-blue-500 hover:bg-blue-600',
+          progress: 'bg-blue-500'
+        };
+    }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-gray-100">
       <Header isAuthenticated={true} userName="Ospite" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Header Section */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-            Sondaggi in Evidenza
-          </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300">
-            Partecipa ai sondaggi attivi e contribuisci alle decisioni che riguardano il futuro del paese
-          </p>
+        {/* Hero Section */}
+        <div className="bg-gradient-to-r from-blue-600 to-purple-700 text-white rounded-3xl p-8 mb-8">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            <div>
+              <h1 className="text-3xl font-bold mb-4">
+                Direct Democracy Project ®
+              </h1>
+              <p className="text-blue-100 mb-6">
+                Partecipa attivamente alle decisioni del tuo paese attraverso una piattaforma sicura, trasparente e accessibile
+              </p>
+              <div className="flex gap-4">
+                <Button className="bg-blue-500 hover:bg-blue-600 text-white rounded-full">
+                  Esplora i sondaggi
+                </Button>
+                <Button className="bg-green-500 hover:bg-green-600 text-white rounded-full">
+                  Accedi
+                </Button>
+              </div>
+            </div>
+            <div className="flex justify-center">
+              <div className="w-32 h-32 bg-white rounded-full flex items-center justify-center">
+                <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                  <span className="text-white font-bold text-xl">D.D.P</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Stats Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <Card className="bg-white rounded-2xl shadow-lg border-0 text-center p-6">
+            <CardContent>
+              <div className="w-12 h-12 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <span className="text-blue-600 text-2xl">👥</span>
+              </div>
+              <h3 className="font-bold text-lg text-gray-900">Partecipazione Attiva</h3>
+              <p className="text-gray-600 text-sm">
+                Vota su questioni reali che influenzano la tua comunità
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-white rounded-2xl shadow-lg border-0 text-center p-6">
+            <CardContent>
+              <div className="w-12 h-12 bg-green-100 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <span className="text-green-600 text-2xl">🔒</span>
+              </div>
+              <h3 className="font-bold text-lg text-gray-900">Sicurezza Garantita</h3>
+              <p className="text-gray-600 text-sm">
+                Autenticazione sicura tramite SPID, CIE
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-white rounded-2xl shadow-lg border-0 text-center p-6">
+            <CardContent>
+              <div className="w-12 h-12 bg-purple-100 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <span className="text-purple-600 text-2xl">📊</span>
+              </div>
+              <h3 className="font-bold text-lg text-gray-900">Analisi Dati</h3>
+              <p className="text-gray-600 text-sm">
+                Visualizza statistiche dettagliate e analisi
+              </p>
+            </CardContent>
+          </Card>
         </div>
 
         {/* Search and Filters */}
-        <div className="mb-8 space-y-4">
-          <div className="flex flex-col lg:flex-row gap-4">
-            <div className="flex-1">
-              <Input
-                type="search"
-                placeholder="Cerca sondaggi..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full"
-              />
-            </div>
-            <div className="flex gap-2">
-              <select
-                value={selectedRegion}
-                onChange={(e) => setSelectedRegion(e.target.value)}
-                className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
-              >
-                {regions.map(region => (
-                  <option key={region} value={region.toLowerCase()}>
-                    {region}
-                  </option>
-                ))}
-              </select>
-              <select
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
-              >
-                {categories.map(category => (
-                  <option key={category} value={category.toLowerCase()}>
-                    {category}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-          
-          <div className="flex flex-wrap gap-2">
-            <Badge variant="outline" className="bg-democracy-blue/10 text-democracy-blue">
-              🔥 {polls.filter(p => p.status === 'urgente').length} Urgenti
-            </Badge>
-            <Badge variant="outline" className="bg-democracy-green/10 text-democracy-green">
-              ✅ {polls.filter(p => p.status === 'attivo').length} Attivi
-            </Badge>
-            <Badge variant="outline" className="bg-gray-500/10 text-gray-500">
-              📊 {polls.reduce((sum, p) => sum + p.totalVotes, 0).toLocaleString()} Voti totali
-            </Badge>
+        <div className="bg-white rounded-2xl shadow-lg border-0 p-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <Input
+              type="search"
+              placeholder="Cerca sondaggi..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="rounded-full border-gray-300"
+            />
+            <select
+              value={selectedRegion}
+              onChange={(e) => setSelectedRegion(e.target.value)}
+              className="px-4 py-2 border border-gray-300 rounded-full bg-white"
+            >
+              {regions.map(region => (
+                <option key={region} value={region.toLowerCase()}>
+                  {region}
+                </option>
+              ))}
+            </select>
+            <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="px-4 py-2 border border-gray-300 rounded-full bg-white"
+            >
+              {categories.map(category => (
+                <option key={category} value={category.toLowerCase()}>
+                  {category}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
 
-        {/* Tabs for different poll types */}
-        <Tabs defaultValue="tutti" className="mb-8">
-          <TabsList className="grid w-full grid-cols-5">
-            <TabsTrigger value="tutti">Tutti</TabsTrigger>
-            <TabsTrigger value="politica">Politica</TabsTrigger>
-            <TabsTrigger value="economia">Economia</TabsTrigger>
-            <TabsTrigger value="sociale">Sociale</TabsTrigger>
-            <TabsTrigger value="ambiente">Ambiente</TabsTrigger>
-          </TabsList>
-          
-          <TabsContent value="tutti" className="mt-6">
-            {/* Sondaggi per te section */}
-            <div className="mb-8">
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                Sondaggi per te
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredPolls.slice(0, 3).map(poll => (
-                  <PollCard
-                    key={poll.id}
-                    {...poll}
-                    onVote={handleVote}
-                    onViewDetails={handleViewDetails}
-                  />
-                ))}
-              </div>
-            </div>
-
-            {/* All polls */}
-            <div>
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-                  Tutti i Sondaggi ({filteredPolls.length})
-                </h2>
-                <Button 
-                  variant="outline"
-                  className="border-democracy-blue text-democracy-blue hover:bg-democracy-blue/10"
-                >
-                  Aggiorna
-                </Button>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredPolls.map(poll => (
-                  <PollCard
-                    key={poll.id}
-                    {...poll}
-                    onVote={handleVote}
-                    onViewDetails={handleViewDetails}
-                  />
-                ))}
-              </div>
-            </div>
-          </TabsContent>
-          
-          {/* Altri tab content similari */}
-          <TabsContent value="politica" className="mt-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredPolls.filter(p => ['fiscale', 'sociale'].includes(p.category)).map(poll => (
-                <PollCard
-                  key={poll.id}
-                  {...poll}
-                  onVote={handleVote}
-                  onViewDetails={handleViewDetails}
-                />
-              ))}
-            </div>
-          </TabsContent>
-          
-          <TabsContent value="economia" className="mt-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredPolls.filter(p => p.category === 'fiscale').map(poll => (
-                <PollCard
-                  key={poll.id}
-                  {...poll}
-                  onVote={handleVote}
-                  onViewDetails={handleViewDetails}
-                />
-              ))}
-            </div>
-          </TabsContent>
-          
-          <TabsContent value="sociale" className="mt-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredPolls.filter(p => p.category === 'sociale').map(poll => (
-                <PollCard
-                  key={poll.id}
-                  {...poll}
-                  onVote={handleVote}
-                  onViewDetails={handleViewDetails}
-                />
-              ))}
-            </div>
-          </TabsContent>
-          
-          <TabsContent value="ambiente" className="mt-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredPolls.filter(p => p.category === 'ambiente').map(poll => (
-                <PollCard
-                  key={poll.id}
-                  {...poll}
-                  onVote={handleVote}
-                  onViewDetails={handleViewDetails}
-                />
-              ))}
-            </div>
-          </TabsContent>
-        </Tabs>
+        {/* Sondaggi in Evidenza */}
+        <div className="mb-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">Sondaggi in Evidenza</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {filteredPolls.map(poll => {
+              const colors = getColorClasses(poll.color);
+              return (
+                <Card key={poll.id} className={`${colors.bg} rounded-2xl shadow-lg border-0 overflow-hidden`}>
+                  <CardHeader className={`${colors.header} text-white p-4`}>
+                    <div className="flex justify-between items-center">
+                      <CardTitle className="text-lg">{poll.title}</CardTitle>
+                      <span className={`text-xs px-2 py-1 rounded-full ${
+                        poll.status === 'urgente' ? 'bg-red-500' : 'bg-white/20'
+                      }`}>
+                        {poll.status === 'urgente' ? 'SCADE' : 'ATTIVO'}
+                      </span>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="p-6">
+                    <p className="text-gray-700 text-sm mb-4">
+                      {poll.description}
+                    </p>
+                    <div className="space-y-2 mb-4">
+                      <div className="text-sm text-gray-600">
+                        Favorevoli: {poll.options[0].percentage}%
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div 
+                          className={`${colors.progress} h-2 rounded-full`}
+                          style={{ width: `${poll.options[0].percentage}%` }}
+                        ></div>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <Button className={`${colors.button} text-white rounded-full px-4 py-2 text-sm`}>
+                        Partecipa
+                      </Button>
+                      <Button variant="outline" className="rounded-full px-4 py-2 text-sm">
+                        Dettagli
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </div>
   );
