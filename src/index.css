@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -35,19 +36,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -97,5 +91,94 @@
 
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Miglioramenti per il tema scuro */
+  .dark {
+    color-scheme: dark;
+  }
+
+  /* Stili per la prosa nel tema scuro */
+  .dark .prose {
+    --tw-prose-body: rgb(209 213 219);
+    --tw-prose-headings: rgb(243 244 246);
+    --tw-prose-lead: rgb(156 163 175);
+    --tw-prose-links: rgb(59 130 246);
+    --tw-prose-bold: rgb(243 244 246);
+    --tw-prose-counters: rgb(156 163 175);
+    --tw-prose-bullets: rgb(75 85 99);
+    --tw-prose-hr: rgb(55 65 81);
+    --tw-prose-quotes: rgb(243 244 246);
+    --tw-prose-quote-borders: rgb(55 65 81);
+    --tw-prose-captions: rgb(156 163 175);
+    --tw-prose-code: rgb(243 244 246);
+    --tw-prose-pre-code: rgb(229 231 235);
+    --tw-prose-pre-bg: rgb(17 24 39);
+    --tw-prose-th-borders: rgb(55 65 81);
+    --tw-prose-td-borders: rgb(75 85 99);
+  }
+
+  /* Animazioni personalizzate */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.2s ease-out;
+  }
+
+  /* Miglioramenti per l'accessibilità */
+  .focus-visible:focus {
+    outline: 2px solid rgb(59 130 246);
+    outline-offset: 2px;
+  }
+
+  /* Scroll personalizzato */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgb(243 244 246);
+  }
+
+  .dark ::-webkit-scrollbar-track {
+    background: rgb(31 41 55);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgb(156 163 175);
+    border-radius: 4px;
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background: rgb(75 85 99);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(107 114 128);
   }
 }
