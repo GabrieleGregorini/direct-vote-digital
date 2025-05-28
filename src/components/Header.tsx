@@ -68,11 +68,11 @@ const Header: React.FC<HeaderProps> = ({ isAuthenticated = false, userName = "Os
           {/* Logo and Brand */}
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
-              <div className="w-10 h-10 rounded-full flex items-center justify-center">
+              <div className="h-10 flex items-center justify-center">
                 <img 
                   src="/lovable-uploads/bc60906b-3ac3-4db4-9d4f-72c9b42bad28.png" 
                   alt="Direct Democracy Project"
-                  className="w-10 h-10"
+                  className="h-10 w-auto object-contain"
                 />
               </div>
               <div className="hidden sm:block">
