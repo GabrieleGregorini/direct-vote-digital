@@ -1,10 +1,16 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTheme } from "@/components/ThemeProvider";
-import { Sun, Moon, Bell } from 'lucide-react';
+import { Sun, Moon, Bell, Globe, ChevronDown } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface HeaderProps {
   isAuthenticated?: boolean;
@@ -15,6 +21,20 @@ const Header: React.FC<HeaderProps> = ({ isAuthenticated = false, userName = "Os
   const navigate = useNavigate();
   const location = useLocation();
   const { theme, setTheme } = useTheme();
+  const [selectedLanguage, setSelectedLanguage] = useState('IT');
+
+  const languages = [
+    { code: 'IT', name: 'Italiano', flag: '🇮🇹' },
+    { code: 'EN', name: 'English', flag: '🇬🇧' },
+    { code: 'FR', name: 'Français', flag: '🇫🇷' },
+    { code: 'DE', name: 'Deutsch', flag: '🇩🇪' },
+    { code: 'ES', name: 'Español', flag: '🇪🇸' },
+    { code: 'PT', name: 'Português', flag: '🇵🇹' },
+    { code: 'RU', name: 'Русский', flag: '🇷🇺' },
+    { code: 'ZH', name: '中文', flag: '🇨🇳' },
+    { code: 'JA', name: '日本語', flag: '🇯🇵' },
+    { code: 'KO', name: '한국어', flag: '🇰🇷' }
+  ];
 
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
@@ -32,18 +52,24 @@ const Header: React.FC<HeaderProps> = ({ isAuthenticated = false, userName = "Os
     navigate('/notifiche');
   };
 
+  const handleLanguageChange = (langCode: string) => {
+    setSelectedLanguage(langCode);
+    // Here you would implement actual translation logic
+    console.log('Language changed to:', langCode);
+  };
+
   return (
     <header className="bg-white dark:bg-gray-900 shadow-sm border-b border-gray-200 dark:border-gray-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo and Brand */}
           <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
               <div className="w-10 h-10 rounded-full flex items-center justify-center">
                 <img 
-                  src="/lovable-uploads/af5282c3-1301-4c36-87c4-23d3daa2fef6.png" 
+                  src="/lovable-uploads/bc60906b-3ac3-4db4-9d4f-72c9b42bad28.png" 
                   alt="Direct Democracy Project"
-                  className="w-10 h-10 rounded-full"
+                  className="w-10 h-10"
                 />
               </div>
               <div className="hidden sm:block">
@@ -100,6 +126,29 @@ const Header: React.FC<HeaderProps> = ({ isAuthenticated = false, userName = "Os
 
           {/* User section */}
           <div className="flex items-center space-x-4">
+            {/* Language Selector */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="sm" className="text-gray-600 dark:text-gray-300">
+                  <Globe className="h-4 w-4 mr-1" />
+                  {selectedLanguage}
+                  <ChevronDown className="h-3 w-3 ml-1" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                {languages.map((lang) => (
+                  <DropdownMenuItem
+                    key={lang.code}
+                    onClick={() => handleLanguageChange(lang.code)}
+                    className="flex items-center space-x-2"
+                  >
+                    <span>{lang.flag}</span>
+                    <span>{lang.name}</span>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             {/* Dark mode toggle */}
             <button
               onClick={toggleTheme}

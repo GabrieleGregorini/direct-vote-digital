@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import News from "./pages/News";
 import NotFound from "./pages/NotFound";
 import SondaggioDetail from "./pages/SondaggioDetail";
+import PollParticipation from "./pages/PollParticipation";
 import ArticleDetail from "./pages/ArticleDetail";
 import Notifications from "./pages/Notifications";
 
@@ -28,6 +29,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/sondaggi" element={<Sondaggi />} />
             <Route path="/sondaggio/:id" element={<SondaggioDetail />} />
+            <Route path="/partecipa/:id" element={<PollParticipation />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/login" element={<Login />} />
             <Route path="/news" element={<News />} />

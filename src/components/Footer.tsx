@@ -11,7 +11,7 @@ const Footer = () => {
           <div className="md:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
               <img 
-                src="/lovable-uploads/af5282c3-1301-4c36-87c4-23d3daa2fef6.png" 
+                src="/lovable-uploads/bc60906b-3ac3-4db4-9d4f-72c9b42bad28.png" 
                 alt="Direct Democracy Project"
                 className="w-10 h-10"
               />

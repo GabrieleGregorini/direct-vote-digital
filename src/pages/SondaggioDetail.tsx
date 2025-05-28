@@ -23,11 +23,11 @@ const SondaggioDetail = () => {
       id: '1',
       title: 'Riforma Fiscale 2025',
       description: 'Valutazione della proposta di riforma fiscale con nuove aliquote e detrazioni per famiglie e imprese.',
-      fullDescription: 'La proposta di riforma fiscale 2025 prevede una revisione completa del sistema tributario italiano con l\'obiettivo di ridurre la pressione fiscale sui redditi medi e bassi, incentivare la crescita economica e combattere l\'evasione fiscale. La riforma include nuove aliquote progressive, detrazioni maggiorate per famiglie con figli e incentivi per le imprese che investono in innovazione e sostenibilità.',
+      fullDescription: 'La proposta di riforma fiscale 2025 prevede una revisione completa del sistema tributario italiano con l\'obiettivo di ridurre la pressione fiscale sui redditi medi e bassi, incentivare la crescita economica e combattere l\'evasione fiscale.',
       category: 'fiscale',
       status: 'attivo',
       promoter: 'Ministero dell\'Economia e delle Finanze',
-      whyImportant: 'Questa riforma potrebbe impattare significativamente il potere d\'acquisto delle famiglie italiane e la competitività delle imprese nazionali sui mercati internazionali.',
+      whyImportant: 'Questa riforma potrebbe impattare significativamente il potere d\'acquisto delle famiglie italiane.',
       options: [
         { 
           label: 'Favorevole alla riforma completa', 
@@ -76,64 +76,6 @@ const SondaggioDetail = () => {
           'Sud': 30
         }
       }
-    },
-    '2': {
-      id: '2',
-      title: 'Referendum Cittadinanza',
-      description: 'Modifica dei criteri per l\'acquisizione della cittadinanza italiana per cittadini stranieri residenti.',
-      fullDescription: 'Il referendum propone di ridurre da 10 a 5 anni il periodo di residenza legale continuativa necessario per richiedere la cittadinanza italiana per naturalizzazione. La proposta include anche la semplificazione delle procedure burocratiche e l\'introduzione di un test di lingua italiana e cultura civica.',
-      category: 'sociale',
-      status: 'urgente',
-      promoter: 'Coalizione per i Diritti Civili',
-      whyImportant: 'La riforma potrebbe facilitare l\'integrazione di circa 1.2 milioni di stranieri attualmente residenti in Italia, con impatti significativi sul tessuto sociale ed economico del paese.',
-      options: [
-        { 
-          label: 'Si, riduzione a 5 anni', 
-          percentage: 47, 
-          votes: 11750,
-          description: 'Sostegno alla riduzione del periodo di residenza'
-        },
-        { 
-          label: 'No, mantenere 10 anni', 
-          percentage: 38, 
-          votes: 9500,
-          description: 'Mantenimento delle regole attuali'
-        },
-        { 
-          label: 'Si, ma con condizioni aggiuntive', 
-          percentage: 12, 
-          votes: 3000,
-          description: 'Riduzione con requisiti più stringenti'
-        },
-        { 
-          label: 'Astensione', 
-          percentage: 3, 
-          votes: 750,
-          description: 'Nessuna preferenza espressa'
-        }
-      ],
-      totalVotes: 25000,
-      endDate: '28/01/2025',
-      region: 'Nazionale',
-      demographics: {
-        age: {
-          '18-25': 32,
-          '26-35': 28,
-          '36-50': 25,
-          '51-65': 12,
-          '65+': 3
-        },
-        gender: {
-          'Maschi': 48,
-          'Femmine': 50,
-          'Altro': 2
-        },
-        region: {
-          'Nord': 42,
-          'Centro': 28,
-          'Sud': 30
-        }
-      }
     }
   };
 
@@ -155,7 +97,6 @@ const SondaggioDetail = () => {
   const handleVote = () => {
     if (selectedOption) {
       setHasVoted(true);
-      // Qui normalmente invieresti il voto al backend
       console.log('Voto inviato:', selectedOption);
     }
   };
@@ -174,7 +115,6 @@ const SondaggioDetail = () => {
       <Header />
       
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Header della pagina */}
         <div className="mb-8">
           <Button 
             onClick={() => navigate('/sondaggi')}
@@ -203,9 +143,7 @@ const SondaggioDetail = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Colonna principale */}
           <div className="lg:col-span-2 space-y-8">
-            {/* Descrizione completa */}
             <Card className="bg-white dark:bg-gray-800">
               <CardHeader>
                 <CardTitle className="text-gray-900 dark:text-white">Descrizione Dettagliata</CardTitle>
@@ -217,7 +155,6 @@ const SondaggioDetail = () => {
               </CardContent>
             </Card>
 
-            {/* Ente promotore e importanza */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Card className="bg-white dark:bg-gray-800">
                 <CardHeader>
@@ -240,7 +177,6 @@ const SondaggioDetail = () => {
               </Card>
             </div>
 
-            {/* Risultati dettagliati */}
             <Card className="bg-white dark:bg-gray-800">
               <CardHeader>
                 <CardTitle className="text-gray-900 dark:text-white">Risultati Attuali</CardTitle>
@@ -261,7 +197,6 @@ const SondaggioDetail = () => {
               </CardContent>
             </Card>
 
-            {/* Dati demografici */}
             <Card className="bg-white dark:bg-gray-800">
               <CardHeader>
                 <CardTitle className="text-gray-900 dark:text-white">Analisi Demografica</CardTitle>
@@ -270,7 +205,7 @@ const SondaggioDetail = () => {
                 <div>
                   <h4 className="font-semibold mb-3 text-gray-900 dark:text-white">Per Età</h4>
                   <div className="grid grid-cols-5 gap-2">
-                    {Object.entries(poll.demographics.age).map(([age, percentage]) => (
+                    {Object.entries(poll.demographics.age as Record<string, number>).map(([age, percentage]) => (
                       <div key={age} className="text-center">
                         <div className="text-sm font-medium text-gray-900 dark:text-white">{age}</div>
                         <div className="text-xs text-gray-600 dark:text-gray-400">{percentage}%</div>
@@ -282,7 +217,7 @@ const SondaggioDetail = () => {
                 <div>
                   <h4 className="font-semibold mb-3 text-gray-900 dark:text-white">Per Genere</h4>
                   <div className="grid grid-cols-3 gap-2">
-                    {Object.entries(poll.demographics.gender).map(([gender, percentage]) => (
+                    {Object.entries(poll.demographics.gender as Record<string, number>).map(([gender, percentage]) => (
                       <div key={gender} className="text-center">
                         <div className="text-sm font-medium text-gray-900 dark:text-white">{gender}</div>
                         <div className="text-xs text-gray-600 dark:text-gray-400">{percentage}%</div>
@@ -294,7 +229,7 @@ const SondaggioDetail = () => {
                 <div>
                   <h4 className="font-semibold mb-3 text-gray-900 dark:text-white">Per Area Geografica</h4>
                   <div className="grid grid-cols-3 gap-2">
-                    {Object.entries(poll.demographics.region).map(([region, percentage]) => (
+                    {Object.entries(poll.demographics.region as Record<string, number>).map(([region, percentage]) => (
                       <div key={region} className="text-center">
                         <div className="text-sm font-medium text-gray-900 dark:text-white">{region}</div>
                         <div className="text-xs text-gray-600 dark:text-gray-400">{percentage}%</div>
@@ -306,9 +241,7 @@ const SondaggioDetail = () => {
             </Card>
           </div>
 
-          {/* Sidebar */}
           <div className="space-y-6">
-            {/* Info box */}
             <Card className="bg-white dark:bg-gray-800">
               <CardHeader>
                 <CardTitle className="text-gray-900 dark:text-white">Informazioni</CardTitle>
@@ -342,7 +275,6 @@ const SondaggioDetail = () => {
               </CardContent>
             </Card>
 
-            {/* Voting box */}
             <Card className="bg-white dark:bg-gray-800">
               <CardHeader>
                 <CardTitle className="text-gray-900 dark:text-white">
@@ -385,7 +317,6 @@ const SondaggioDetail = () => {
               </CardContent>
             </Card>
 
-            {/* Trending */}
             <Card className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border-blue-200 dark:border-blue-800">
               <CardHeader>
                 <CardTitle className="text-gray-900 dark:text-white flex items-center gap-2">
