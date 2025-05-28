@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTheme } from "@/components/ThemeProvider";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Sun, Moon, Bell, Globe, ChevronDown } from 'lucide-react';
 import {
   DropdownMenu,
@@ -21,19 +22,20 @@ const Header: React.FC<HeaderProps> = ({ isAuthenticated = false, userName = "Os
   const navigate = useNavigate();
   const location = useLocation();
   const { theme, setTheme } = useTheme();
-  const [selectedLanguage, setSelectedLanguage] = useState('IT');
+  const { language, setLanguage, t } = useLanguage();
+  const [selectedLanguage, setSelectedLanguage] = useState(language);
 
   const languages = [
-    { code: 'IT', name: 'Italiano', flag: '🇮🇹' },
-    { code: 'EN', name: 'English', flag: '🇬🇧' },
-    { code: 'FR', name: 'Français', flag: '🇫🇷' },
-    { code: 'DE', name: 'Deutsch', flag: '🇩🇪' },
-    { code: 'ES', name: 'Español', flag: '🇪🇸' },
-    { code: 'PT', name: 'Português', flag: '🇵🇹' },
-    { code: 'RU', name: 'Русский', flag: '🇷🇺' },
-    { code: 'ZH', name: '中文', flag: '🇨🇳' },
-    { code: 'JA', name: '日本語', flag: '🇯🇵' },
-    { code: 'KO', name: '한국어', flag: '🇰🇷' }
+    { code: 'IT' as const, name: 'Italiano', flag: '🇮🇹' },
+    { code: 'EN' as const, name: 'English', flag: '🇬🇧' },
+    { code: 'FR' as const, name: 'Français', flag: '🇫🇷' },
+    { code: 'DE' as const, name: 'Deutsch', flag: '🇩🇪' },
+    { code: 'ES' as const, name: 'Español', flag: '🇪🇸' },
+    { code: 'PT' as const, name: 'Português', flag: '🇵🇹' },
+    { code: 'RU' as const, name: 'Русский', flag: '🇷🇺' },
+    { code: 'ZH' as const, name: '中文', flag: '🇨🇳' },
+    { code: 'JA' as const, name: '日本語', flag: '🇯🇵' },
+    { code: 'KO' as const, name: '한국어', flag: '🇰🇷' }
   ];
 
   const toggleTheme = () => {
@@ -53,8 +55,9 @@ const Header: React.FC<HeaderProps> = ({ isAuthenticated = false, userName = "Os
   };
 
   const handleLanguageChange = (langCode: string) => {
-    setSelectedLanguage(langCode);
-    // Here you would implement actual translation logic
+    const newLang = langCode as 'IT' | 'EN' | 'FR' | 'DE' | 'ES' | 'PT' | 'RU' | 'ZH' | 'JA' | 'KO';
+    setSelectedLanguage(newLang);
+    setLanguage(newLang);
     console.log('Language changed to:', langCode);
   };
 
@@ -74,7 +77,7 @@ const Header: React.FC<HeaderProps> = ({ isAuthenticated = false, userName = "Os
               </div>
               <div className="hidden sm:block">
                 <h1 className="text-lg font-semibold text-gray-900 dark:text-white">
-                  Direct Democracy Project
+                  {t('site.title')}
                 </h1>
               </div>
             </div>
@@ -90,7 +93,7 @@ const Header: React.FC<HeaderProps> = ({ isAuthenticated = false, userName = "Os
                   : 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
               }`}
             >
-              Home
+              {t('nav.home')}
             </button>
             <button
               onClick={() => navigate('/sondaggi')}
@@ -100,7 +103,7 @@ const Header: React.FC<HeaderProps> = ({ isAuthenticated = false, userName = "Os
                   : 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
               }`}
             >
-              Sondaggi
+              {t('nav.polls')}
             </button>
             <button
               onClick={() => navigate('/dashboard')}
@@ -110,7 +113,7 @@ const Header: React.FC<HeaderProps> = ({ isAuthenticated = false, userName = "Os
                   : 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
               }`}
             >
-              Dashboard
+              {t('nav.dashboard')}
             </button>
             <button
               onClick={() => navigate('/news')}
@@ -120,7 +123,7 @@ const Header: React.FC<HeaderProps> = ({ isAuthenticated = false, userName = "Os
                   : 'text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
               }`}
             >
-              News & Trasparenza
+              {t('nav.news')}
             </button>
           </nav>
 
@@ -181,7 +184,7 @@ const Header: React.FC<HeaderProps> = ({ isAuthenticated = false, userName = "Os
                 </span>
               </div>
               <span className="hidden sm:block text-sm font-medium text-gray-700 dark:text-gray-300">
-                {userName}
+                {userName === "Ospite" ? t('nav.guest') : userName}
               </span>
             </div>
 
@@ -190,7 +193,7 @@ const Header: React.FC<HeaderProps> = ({ isAuthenticated = false, userName = "Os
                 onClick={() => navigate('/login')}
                 className="bg-blue-600 hover:bg-blue-700 text-white rounded-full"
               >
-                Accedi
+                {t('nav.login')}
               </Button>
             )}
           </div>

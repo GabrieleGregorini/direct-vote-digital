@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,13 +6,16 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
+import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { ArrowLeft, Users, Calendar, MapPin, TrendingUp } from 'lucide-react';
 
 const SondaggioDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [selectedOption, setSelectedOption] = useState('');
   const [hasVoted, setHasVoted] = useState(false);
 
@@ -23,11 +25,11 @@ const SondaggioDetail = () => {
       id: '1',
       title: 'Riforma Fiscale 2025',
       description: 'Valutazione della proposta di riforma fiscale con nuove aliquote e detrazioni per famiglie e imprese.',
-      fullDescription: 'La proposta di riforma fiscale 2025 prevede una revisione completa del sistema tributario italiano con l\'obiettivo di ridurre la pressione fiscale sui redditi medi e bassi, incentivare la crescita economica e combattere l\'evasione fiscale.',
+      fullDescription: 'La proposta di riforma fiscale 2025 prevede una revisione completa del sistema tributario italiano con l\'obiettivo di ridurre la pressione fiscale sui redditi medi e bassi, incentivare la crescita economica e combattere l\'evasione fiscale attraverso l\'introduzione di nuove tecnologie e semplificazioni burocratiche.',
       category: 'fiscale',
       status: 'attivo',
       promoter: 'Ministero dell\'Economia e delle Finanze',
-      whyImportant: 'Questa riforma potrebbe impattare significativamente il potere d\'acquisto delle famiglie italiane.',
+      whyImportant: 'Questa riforma potrebbe impattare significativamente il potere d\'acquisto delle famiglie italiane e la competitività delle imprese.',
       options: [
         { 
           label: 'Favorevole alla riforma completa', 
@@ -58,23 +60,30 @@ const SondaggioDetail = () => {
       endDate: '15/02/2025',
       region: 'Nazionale',
       demographics: {
-        age: {
-          '18-25': 18,
-          '26-35': 28,
-          '36-50': 31,
-          '51-65': 18,
-          '65+': 5
-        },
-        gender: {
-          'Maschi': 52,
-          'Femmine': 46,
-          'Altro': 2
-        },
-        region: {
-          'Nord': 45,
-          'Centro': 25,
-          'Sud': 30
-        }
+        age: [
+          { name: '18-25', value: 18, color: '#8884d8' },
+          { name: '26-35', value: 28, color: '#82ca9d' },
+          { name: '36-50', value: 31, color: '#ffc658' },
+          { name: '51-65', value: 18, color: '#ff7300' },
+          { name: '65+', value: 5, color: '#0088fe' }
+        ],
+        gender: [
+          { name: 'Maschi', value: 52, color: '#0088fe' },
+          { name: 'Femmine', value: 46, color: '#00c49f' },
+          { name: 'Altro', value: 2, color: '#ffbb28' }
+        ],
+        region: [
+          { name: 'Nord', value: 45 },
+          { name: 'Centro', value: 25 },
+          { name: 'Sud', value: 30 }
+        ],
+        education: [
+          { name: 'Elementare', value: 5 },
+          { name: 'Media', value: 15 },
+          { name: 'Superiore', value: 45 },
+          { name: 'Laurea', value: 30 },
+          { name: 'Post-Laurea', value: 5 }
+        ]
       }
     }
   };
@@ -109,6 +118,8 @@ const SondaggioDetail = () => {
       default: return 'bg-gray-500';
     }
   };
+
+  const COLORS = ['#0088fe', '#00c49f', '#ffbb28', '#ff8042', '#8884d8'];
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
@@ -199,43 +210,83 @@ const SondaggioDetail = () => {
 
             <Card className="bg-white dark:bg-gray-800">
               <CardHeader>
-                <CardTitle className="text-gray-900 dark:text-white">Analisi Demografica</CardTitle>
+                <CardTitle className="text-gray-900 dark:text-white">Analisi Demografica Dettagliata</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-6">
-                <div>
-                  <h4 className="font-semibold mb-3 text-gray-900 dark:text-white">Per Età</h4>
-                  <div className="grid grid-cols-5 gap-2">
-                    {Object.entries(poll.demographics.age as Record<string, number>).map(([age, percentage]) => (
-                      <div key={age} className="text-center">
-                        <div className="text-sm font-medium text-gray-900 dark:text-white">{age}</div>
-                        <div className="text-xs text-gray-600 dark:text-gray-400">{percentage}%</div>
-                      </div>
-                    ))}
+              <CardContent className="space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {/* Age Distribution */}
+                  <div>
+                    <h4 className="font-semibold mb-4 text-gray-900 dark:text-white">Distribuzione per Età</h4>
+                    <ResponsiveContainer width="100%" height={200}>
+                      <PieChart>
+                        <Pie
+                          data={poll.demographics.age}
+                          cx="50%"
+                          cy="50%"
+                          outerRadius={60}
+                          fill="#8884d8"
+                          dataKey="value"
+                          label={({name, value}) => `${name}: ${value}%`}
+                        >
+                          {poll.demographics.age.map((entry: any, index: number) => (
+                            <Cell key={`cell-${index}`} fill={entry.color} />
+                          ))}
+                        </Pie>
+                        <Tooltip />
+                      </PieChart>
+                    </ResponsiveContainer>
                   </div>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold mb-3 text-gray-900 dark:text-white">Per Genere</h4>
-                  <div className="grid grid-cols-3 gap-2">
-                    {Object.entries(poll.demographics.gender as Record<string, number>).map(([gender, percentage]) => (
-                      <div key={gender} className="text-center">
-                        <div className="text-sm font-medium text-gray-900 dark:text-white">{gender}</div>
-                        <div className="text-xs text-gray-600 dark:text-gray-400">{percentage}%</div>
-                      </div>
-                    ))}
+
+                  {/* Gender Distribution */}
+                  <div>
+                    <h4 className="font-semibold mb-4 text-gray-900 dark:text-white">Distribuzione per Genere</h4>
+                    <ResponsiveContainer width="100%" height={200}>
+                      <PieChart>
+                        <Pie
+                          data={poll.demographics.gender}
+                          cx="50%"
+                          cy="50%"
+                          outerRadius={60}
+                          fill="#82ca9d"
+                          dataKey="value"
+                          label={({name, value}) => `${name}: ${value}%`}
+                        >
+                          {poll.demographics.gender.map((entry: any, index: number) => (
+                            <Cell key={`cell-${index}`} fill={entry.color} />
+                          ))}
+                        </Pie>
+                        <Tooltip />
+                      </PieChart>
+                    </ResponsiveContainer>
                   </div>
                 </div>
 
+                {/* Regional Distribution */}
                 <div>
-                  <h4 className="font-semibold mb-3 text-gray-900 dark:text-white">Per Area Geografica</h4>
-                  <div className="grid grid-cols-3 gap-2">
-                    {Object.entries(poll.demographics.region as Record<string, number>).map(([region, percentage]) => (
-                      <div key={region} className="text-center">
-                        <div className="text-sm font-medium text-gray-900 dark:text-white">{region}</div>
-                        <div className="text-xs text-gray-600 dark:text-gray-400">{percentage}%</div>
-                      </div>
-                    ))}
-                  </div>
+                  <h4 className="font-semibold mb-4 text-gray-900 dark:text-white">Distribuzione Geografica</h4>
+                  <ResponsiveContainer width="100%" height={250}>
+                    <BarChart data={poll.demographics.region}>
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="name" />
+                      <YAxis />
+                      <Tooltip formatter={(value) => [`${value}%`, 'Percentuale']} />
+                      <Bar dataKey="value" fill="#8884d8" />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+
+                {/* Education Level */}
+                <div>
+                  <h4 className="font-semibold mb-4 text-gray-900 dark:text-white">Livello di Istruzione</h4>
+                  <ResponsiveContainer width="100%" height={250}>
+                    <BarChart data={poll.demographics.education}>
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="name" />
+                      <YAxis />
+                      <Tooltip formatter={(value) => [`${value}%`, 'Percentuale']} />
+                      <Bar dataKey="value" fill="#82ca9d" />
+                    </BarChart>
+                  </ResponsiveContainer>
                 </div>
               </CardContent>
             </Card>
