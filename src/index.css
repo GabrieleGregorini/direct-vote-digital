@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -147,6 +146,22 @@
   .mobile-view-forced .space-x-8 > * + * {
     margin-left: 0 !important;
     margin-top: 1rem !important;
+  }
+
+  /* Mobile navigation enhancements */
+  .mobile-view-forced .md\:hidden {
+    display: block !important;
+  }
+
+  .mobile-view-forced .hidden.sm\:flex {
+    display: none !important;
+  }
+
+  /* Responsive breakpoint for extra small screens */
+  @screen xs {
+    .xs\:block {
+      display: block;
+    }
   }
 
   /* Stili per la prosa nel tema scuro */

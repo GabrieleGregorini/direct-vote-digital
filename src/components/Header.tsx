@@ -6,6 +6,7 @@ import { useTheme } from "@/components/ThemeProvider";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Sun, Moon, Bell, Globe, ChevronDown } from 'lucide-react';
 import ViewToggle from './ViewToggle';
+import MobileNav from './MobileNav';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -67,6 +68,9 @@ const Header: React.FC<HeaderProps> = ({ isAuthenticated = false, userName = "Os
         <div className="flex justify-between items-center h-16">
           {/* Logo and Brand */}
           <div className="flex items-center space-x-4">
+            {/* Mobile Navigation */}
+            <MobileNav />
+            
             <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
               <div className="h-10 flex items-center justify-center">
                 <img 
@@ -132,28 +136,30 @@ const Header: React.FC<HeaderProps> = ({ isAuthenticated = false, userName = "Os
             {/* View Toggle */}
             <ViewToggle />
 
-            {/* Language Selector */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm" className="text-gray-600 dark:text-gray-300">
-                  <Globe className="h-4 w-4 mr-1" />
-                  {selectedLanguage}
-                  <ChevronDown className="h-3 w-3 ml-1" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-48">
-                {languages.map((lang) => (
-                  <DropdownMenuItem
-                    key={lang.code}
-                    onClick={() => handleLanguageChange(lang.code)}
-                    className="flex items-center space-x-2"
-                  >
-                    <span>{lang.flag}</span>
-                    <span>{lang.name}</span>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
+            {/* Language Selector - Hidden on small screens */}
+            <div className="hidden sm:block">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm" className="text-gray-600 dark:text-gray-300">
+                    <Globe className="h-4 w-4 mr-1" />
+                    {selectedLanguage}
+                    <ChevronDown className="h-3 w-3 ml-1" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  {languages.map((lang) => (
+                    <DropdownMenuItem
+                      key={lang.code}
+                      onClick={() => handleLanguageChange(lang.code)}
+                      className="flex items-center space-x-2"
+                    >
+                      <span>{lang.flag}</span>
+                      <span>{lang.name}</span>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
 
             {/* Dark mode toggle */}
             <button
@@ -163,8 +169,8 @@ const Header: React.FC<HeaderProps> = ({ isAuthenticated = false, userName = "Os
               {theme === 'light' ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
             </button>
 
-            {/* Notifications */}
-            <div className="relative">
+            {/* Notifications - Hidden on very small screens */}
+            <div className="relative hidden xs:block">
               <button 
                 onClick={handleNotificationClick}
                 className="p-2 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
@@ -176,7 +182,7 @@ const Header: React.FC<HeaderProps> = ({ isAuthenticated = false, userName = "Os
               </Badge>
             </div>
 
-            {/* User profile */}
+            {/* User profile - Simplified on mobile */}
             <div 
               className="flex items-center space-x-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg p-2 transition-colors"
               onClick={handleUserClick}
@@ -194,7 +200,7 @@ const Header: React.FC<HeaderProps> = ({ isAuthenticated = false, userName = "Os
             {!isAuthenticated && (
               <Button 
                 onClick={() => navigate('/login')}
-                className="bg-blue-600 hover:bg-blue-700 text-white rounded-full"
+                className="hidden sm:flex bg-blue-600 hover:bg-blue-700 text-white rounded-full"
               >
                 {t('nav.login')}
               </Button>
