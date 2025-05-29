@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -5,11 +6,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useNavigate } from 'react-router-dom';
-import { useLanguage } from "@/contexts/LanguageContext";
 
 const Sondaggi = () => {
   const navigate = useNavigate();
-  const { t } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('tutti');
   const [selectedCategory, setSelectedCategory] = useState('tutti');
@@ -18,163 +17,163 @@ const Sondaggi = () => {
   const polls = [
     {
       id: '1',
-      title: t('polls.fiscalReform.title'),
-      description: t('polls.fiscalReform.description'),
+      title: 'Riforma Fiscale 2025',
+      description: 'Valutazione della proposta di riforma fiscale con nuove aliquote e detrazioni per famiglie e imprese.',
       category: 'fiscale' as const,
       status: 'attivo' as const,
       color: 'yellow',
       options: [
-        { label: t('polls.fiscalReform.options.favorable'), percentage: 62, votes: 15847 },
-        { label: t('polls.fiscalReform.options.contrary'), percentage: 32, votes: 8174 },
-        { label: t('polls.fiscalReform.options.dontKnow'), percentage: 6, votes: 1532 }
+        { label: 'Favorevole', percentage: 62, votes: 15847 },
+        { label: 'Contrario', percentage: 32, votes: 8174 },
+        { label: 'Non so', percentage: 6, votes: 1532 }
       ],
       totalVotes: 25553,
       endDate: '15/02/2025',
-      region: t('common.national')
+      region: 'Nazionale'
     },
     {
       id: '2',
-      title: t('polls.energyTransition.title'),
-      description: t('polls.energyTransition.description'),
+      title: 'Transizione Energetica',
+      description: 'Investimenti per accelerare la transizione verso energie rinnovabili e riduzione emissioni CO2.',
       category: 'ambiente' as const,
       status: 'attivo' as const,
       color: 'green',
       options: [
-        { label: t('polls.energyTransition.options.increase'), percentage: 73, votes: 18250 },
-        { label: t('polls.energyTransition.options.maintain'), percentage: 22, votes: 5500 },
-        { label: t('polls.energyTransition.options.reduce'), percentage: 5, votes: 1250 }
+        { label: 'Incrementare investimenti', percentage: 73, votes: 18250 },
+        { label: 'Mantenere livelli attuali', percentage: 22, votes: 5500 },
+        { label: 'Ridurre investimenti', percentage: 5, votes: 1250 }
       ],
       totalVotes: 25000,
       endDate: '10/03/2025',
-      region: t('common.national')
+      region: 'Nazionale'
     },
     {
       id: '3',
-      title: t('polls.citizenshipReferendum.title'),
-      description: t('polls.citizenshipReferendum.description'),
+      title: 'Referendum Cittadinanza',
+      description: 'Modifica dei criteri per l\'acquisizione della cittadinanza italiana.',
       category: 'sociale' as const,
       status: 'urgente' as const,
       color: 'red',
       options: [
-        { label: t('polls.citizenshipReferendum.options.yesReduction'), percentage: 47, votes: 11750 },
-        { label: t('polls.citizenshipReferendum.options.noMaintain'), percentage: 38, votes: 9500 },
-        { label: t('polls.citizenshipReferendum.options.yesConditions'), percentage: 15, votes: 3750 }
+        { label: 'Si, riduzione anni', percentage: 47, votes: 11750 },
+        { label: 'No, mantenere attuale', percentage: 38, votes: 9500 },
+        { label: 'Si, con condizioni', percentage: 15, votes: 3750 }
       ],
       totalVotes: 25000,
       endDate: '28/01/2025',
-      region: t('common.national')
+      region: 'Nazionale'
     },
     {
       id: '4',
-      title: t('polls.pensionReform.title'),
-      description: t('polls.pensionReform.description'),
+      title: 'Riforma Pensioni',
+      description: 'Proposta di riforma del sistema pensionistico con età flessibile.',
       category: 'sociale' as const,
       status: 'attivo' as const,
       color: 'blue',
       options: [
-        { label: t('polls.pensionReform.options.favorable'), percentage: 54, votes: 13500 },
-        { label: t('polls.pensionReform.options.contrary'), percentage: 38, votes: 9500 },
-        { label: t('polls.pensionReform.options.indecisive'), percentage: 8, votes: 2000 }
+        { label: 'Favorevole', percentage: 54, votes: 13500 },
+        { label: 'Contrario', percentage: 38, votes: 9500 },
+        { label: 'Indeciso', percentage: 8, votes: 2000 }
       ],
       totalVotes: 25000,
       endDate: '20/02/2025',
-      region: t('common.national')
+      region: 'Nazionale'
     },
     {
       id: '5',
-      title: t('polls.digitalizationPA.title'),
-      description: t('polls.digitalizationPA.description'),
+      title: 'Digitalizzazione PA',
+      description: 'Accelerazione dei processi di digitalizzazione nella Pubblica Amministrazione.',
       category: 'tecnologia' as const,
       status: 'attivo' as const,
       color: 'purple',
       options: [
-        { label: t('polls.digitalizationPA.options.priority'), percentage: 68, votes: 17000 },
-        { label: t('polls.digitalizationPA.options.gradual'), percentage: 25, votes: 6250 },
-        { label: t('polls.digitalizationPA.options.nonPriority'), percentage: 7, votes: 1750 }
+        { label: 'Priorità assoluta', percentage: 68, votes: 17000 },
+        { label: 'Importante ma graduale', percentage: 25, votes: 6250 },
+        { label: 'Non prioritario', percentage: 7, votes: 1750 }
       ],
       totalVotes: 25000,
       endDate: '05/03/2025',
-      region: t('common.national')
+      region: 'Nazionale'
     },
     {
       id: '6',
-      title: t('polls.healthTerritorial.title'),
-      description: t('polls.healthTerritorial.description'),
+      title: 'Sanità Territoriale',
+      description: 'Potenziamento delle strutture sanitarie territoriali e medicina di prossimità.',
       category: 'sanita' as const,
       status: 'attivo' as const,
       color: 'teal',
       options: [
-        { label: t('polls.healthTerritorial.options.massive'), percentage: 71, votes: 17750 },
-        { label: t('polls.healthTerritorial.options.mirative'), percentage: 24, votes: 6000 },
-        { label: t('polls.healthTerritorial.options.statusQuo'), percentage: 5, votes: 1250 }
+        { label: 'Investimenti massicci', percentage: 71, votes: 17750 },
+        { label: 'Investimenti mirati', percentage: 24, votes: 6000 },
+        { label: 'Mantenere status quo', percentage: 5, votes: 1250 }
       ],
       totalVotes: 25000,
       endDate: '25/02/2025',
-      region: t('common.national')
+      region: 'Nazionale'
     },
     {
       id: '7',
-      title: t('polls.publicTransport.title'),
-      description: t('polls.publicTransport.description'),
+      title: 'Trasporti Pubblici',
+      description: 'Miglioramento e potenziamento del trasporto pubblico locale.',
       category: 'trasporti' as const,
       status: 'attivo' as const,
       color: 'orange',
       options: [
-        { label: t('polls.publicTransport.options.important'), percentage: 64, votes: 16000 },
-        { label: t('polls.publicTransport.options.gradual'), percentage: 28, votes: 7000 },
-        { label: t('polls.publicTransport.options.notNeeded'), percentage: 8, votes: 2000 }
+        { label: 'Investimenti importanti', percentage: 64, votes: 16000 },
+        { label: 'Miglioramenti graduali', percentage: 28, votes: 7000 },
+        { label: 'Non necessario', percentage: 8, votes: 2000 }
       ],
       totalVotes: 25000,
       endDate: '15/03/2025',
-      region: t('common.national')
+      region: 'Nazionale'
     },
     {
       id: '8',
-      title: t('polls.schoolDigitalization.title'),
-      description: t('polls.schoolDigitalization.description'),
+      title: 'Scuola Digitale',
+      description: 'Implementazione di tecnologie digitali nell\'educazione scolastica.',
       category: 'istruzione' as const,
       status: 'attivo' as const,
       color: 'cyan',
       options: [
-        { label: t('polls.schoolDigitalization.options.complete'), percentage: 52, votes: 13000 },
-        { label: t('polls.schoolDigitalization.options.mixed'), percentage: 39, votes: 9750 },
-        { label: t('polls.schoolDigitalization.options.traditional'), percentage: 9, votes: 2250 }
+        { label: 'Digitalizzazione completa', percentage: 52, votes: 13000 },
+        { label: 'Approccio misto', percentage: 39, votes: 9750 },
+        { label: 'Mantenere tradizionale', percentage: 9, votes: 2250 }
       ],
       totalVotes: 25000,
       endDate: '12/03/2025',
-      region: t('common.national')
+      region: 'Nazionale'
     },
     {
       id: '9',
-      title: t('polls.urbanSecurity.title'),
-      description: t('polls.urbanSecurity.description'),
+      title: 'Sicurezza Urbana',
+      description: 'Strategie per migliorare la sicurezza nei centri urbani.',
       category: 'sicurezza' as const,
       status: 'urgente' as const,
       color: 'red',
       options: [
-        { label: t('polls.urbanSecurity.options.moreForces'), percentage: 43, votes: 10750 },
-        { label: t('polls.urbanSecurity.options.smartTechnologies'), percentage: 35, votes: 8750 },
-        { label: t('polls.urbanSecurity.options.socialPrevention'), percentage: 22, votes: 5500 }
+        { label: 'Più forze dell\'ordine', percentage: 43, votes: 10750 },
+        { label: 'Tecnologie smart', percentage: 35, votes: 8750 },
+        { label: 'Prevenzione sociale', percentage: 22, votes: 5500 }
       ],
       totalVotes: 25000,
       endDate: '30/01/2025',
-      region: t('common.national')
+      region: 'Nazionale'
     },
     {
       id: '10',
-      title: t('polls.sustainableAgriculture.title'),
-      description: t('polls.sustainableAgriculture.description'),
+      title: 'Agricoltura Sostenibile',
+      description: 'Transizione verso pratiche agricole più sostenibili e rispettose dell\'ambiente.',
       category: 'ambiente' as const,
       status: 'attivo' as const,
       color: 'green',
       options: [
-        { label: t('polls.sustainableAgriculture.options.bioIncentives'), percentage: 58, votes: 14500 },
-        { label: t('polls.sustainableAgriculture.options.gradualRegulation'), percentage: 32, votes: 8000 },
-        { label: t('polls.sustainableAgriculture.options.current'), percentage: 10, votes: 2500 }
+        { label: 'Incentivi per bio', percentage: 58, votes: 14500 },
+        { label: 'Regolamentazione graduale', percentage: 32, votes: 8000 },
+        { label: 'Mantenere attuale', percentage: 10, votes: 2500 }
       ],
       totalVotes: 25000,
       endDate: '18/03/2025',
-      region: t('common.national')
+      region: 'Nazionale'
     }
   ];
 
@@ -262,16 +261,16 @@ const Sondaggi = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
-      <Header isAuthenticated={true} userName={t('common.guest')} />
+      <Header isAuthenticated={true} userName="Ospite" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Page Title */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-            {t('polls.title')}
+            Sondaggi Attivi
           </h1>
           <p className="text-gray-600 dark:text-gray-300">
-            {t('polls.subtitle')}
+            Partecipa alle decisioni che influenzano il futuro del paese
           </p>
         </div>
 
@@ -280,7 +279,7 @@ const Sondaggi = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Input
               type="search"
-              placeholder={t('polls.searchPlaceholder')}
+              placeholder="Cerca sondaggi..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="rounded-full border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
@@ -290,29 +289,22 @@ const Sondaggi = () => {
               onChange={(e) => setSelectedRegion(e.target.value)}
               className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-full bg-white dark:bg-gray-700 dark:text-white"
             >
-              <option value="tutti">{t('filters.allRegions')}</option>
-              <option value="nazionale">{t('common.national')}</option>
-              <option value="lombardia">Lombardia</option>
-              <option value="lazio">Lazio</option>
-              <option value="veneto">Veneto</option>
-              <option value="emilia-romagna">Emilia-Romagna</option>
-              <option value="toscana">Toscana</option>
+              {regions.map(region => (
+                <option key={region} value={region.toLowerCase()}>
+                  {region}
+                </option>
+              ))}
             </select>
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
               className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-full bg-white dark:bg-gray-700 dark:text-white"
             >
-              <option value="tutti">{t('filters.allCategories')}</option>
-              <option value="fiscale">{t('categories.fiscal')}</option>
-              <option value="sociale">{t('categories.social')}</option>
-              <option value="ambiente">{t('categories.environment')}</option>
-              <option value="trasporti">{t('categories.transport')}</option>
-              <option value="economia">{t('categories.economy')}</option>
-              <option value="tecnologia">{t('categories.technology')}</option>
-              <option value="sanita">{t('categories.health')}</option>
-              <option value="istruzione">{t('categories.education')}</option>
-              <option value="sicurezza">{t('categories.security')}</option>
+              {categories.map(category => (
+                <option key={category} value={category.toLowerCase()}>
+                  {category}
+                </option>
+              ))}
             </select>
           </div>
         </div>
@@ -329,7 +321,7 @@ const Sondaggi = () => {
                     <span className={`text-xs px-2 py-1 rounded-full ${
                       poll.status === 'urgente' ? 'bg-red-500' : 'bg-white/20'
                     }`}>
-                      {poll.status === 'urgente' ? t('status.urgent') : t('status.active')}
+                      {poll.status === 'urgente' ? 'URGENTE' : 'ATTIVO'}
                     </span>
                   </div>
                 </CardHeader>
@@ -339,7 +331,7 @@ const Sondaggi = () => {
                   </p>
                   <div className="space-y-2 mb-4">
                     <div className="text-sm text-gray-600 dark:text-gray-400">
-                      {t('polls.favorable')}: {poll.options[0].percentage}%
+                      Favorevoli: {poll.options[0].percentage}%
                     </div>
                     <div className="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2">
                       <div 
@@ -348,22 +340,22 @@ const Sondaggi = () => {
                       ></div>
                     </div>
                     <div className="text-xs text-gray-500 dark:text-gray-400">
-                      {poll.totalVotes.toLocaleString()} {t('polls.participants')} • {t('polls.expires')}: {poll.endDate}
+                      {poll.totalVotes.toLocaleString()} partecipanti • Scade: {poll.endDate}
                     </div>
                   </div>
                   <div className="flex gap-2">
                     <Button 
                       className={`${colors.button} text-white rounded-full px-4 py-2 text-sm flex-1`}
-                      onClick={() => navigate(`/partecipa/${poll.id}`)}
+                      onClick={() => navigate(`/sondaggio/${poll.id}`)}
                     >
-                      {t('polls.participate')}
+                      Partecipa
                     </Button>
                     <Button 
                       variant="outline" 
                       className="rounded-full px-4 py-2 text-sm"
                       onClick={() => navigate(`/sondaggio/${poll.id}`)}
                     >
-                      {t('polls.details')}
+                      Dettagli
                     </Button>
                   </div>
                 </CardContent>
