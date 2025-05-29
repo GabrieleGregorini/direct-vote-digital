@@ -271,17 +271,15 @@ i18next
   });
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = useState<string>(i18next.language || 'it');
+  const [language, setLanguage] = useState(i18next.language);
 
   useEffect(() => {
-    const handleLanguageChange = (lng: string) => {
+    i18next.on('languageChanged', (lng) => {
       setLanguage(lng);
-    };
-
-    i18next.on('languageChanged', handleLanguageChange);
+    });
 
     return () => {
-      i18next.off('languageChanged', handleLanguageChange);
+      i18next.off('languageChanged');
     };
   }, []);
 
@@ -290,8 +288,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   };
 
   const t = (key: string, options?: any): string => {
-    const result = i18next.t(key, options);
-    return typeof result === 'string' ? result : key;
+    return i18next.t(key, options);
   };
 
   const value: LanguageContextProps = {
