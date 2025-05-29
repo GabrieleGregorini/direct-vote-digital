@@ -99,6 +99,56 @@
     color-scheme: dark;
   }
 
+  /* Mobile view forced styles */
+  .mobile-view-forced {
+    max-width: 100% !important;
+  }
+
+  .mobile-view-forced .max-w-7xl,
+  .mobile-view-forced .max-w-6xl,
+  .mobile-view-forced .max-w-5xl,
+  .mobile-view-forced .max-w-4xl,
+  .mobile-view-forced .max-w-3xl,
+  .mobile-view-forced .max-w-2xl {
+    max-width: 100% !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .mobile-view-forced .hidden.md\:flex,
+  .mobile-view-forced .hidden.lg\:flex,
+  .mobile-view-forced .hidden.sm\:block,
+  .mobile-view-forced .hidden.md\:block,
+  .mobile-view-forced .hidden.lg\:block {
+    display: none !important;
+  }
+
+  .mobile-view-forced .grid-cols-2,
+  .mobile-view-forced .grid-cols-3,
+  .mobile-view-forced .grid-cols-4,
+  .mobile-view-forced .md\:grid-cols-2,
+  .mobile-view-forced .md\:grid-cols-3,
+  .mobile-view-forced .md\:grid-cols-4,
+  .mobile-view-forced .lg\:grid-cols-2,
+  .mobile-view-forced .lg\:grid-cols-3,
+  .mobile-view-forced .lg\:grid-cols-4 {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  }
+
+  .mobile-view-forced .flex-row {
+    flex-direction: column !important;
+  }
+
+  .mobile-view-forced .space-x-4 > * + * {
+    margin-left: 0 !important;
+    margin-top: 1rem !important;
+  }
+
+  .mobile-view-forced .space-x-8 > * + * {
+    margin-left: 0 !important;
+    margin-top: 1rem !important;
+  }
+
   /* Stili per la prosa nel tema scuro */
   .dark .prose {
     --tw-prose-body: rgb(209 213 219);

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -6,6 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useTheme } from "@/components/ThemeProvider";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Sun, Moon, Bell, Globe, ChevronDown } from 'lucide-react';
+import ViewToggle from './ViewToggle';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -129,6 +129,9 @@ const Header: React.FC<HeaderProps> = ({ isAuthenticated = false, userName = "Os
 
           {/* User section */}
           <div className="flex items-center space-x-4">
+            {/* View Toggle */}
+            <ViewToggle />
+
             {/* Language Selector */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
