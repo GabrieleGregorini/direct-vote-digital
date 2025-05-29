@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
@@ -288,7 +289,8 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   };
 
   const t = (key: string, options?: any): string => {
-    return i18next.t(key, options);
+    const result = i18next.t(key, options);
+    return typeof result === 'string' ? result : key;
   };
 
   const value: LanguageContextProps = {
