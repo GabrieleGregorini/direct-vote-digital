@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
@@ -272,15 +271,17 @@ i18next
   });
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = useState(i18next.language);
+  const [language, setLanguage] = useState<string>(i18next.language || 'it');
 
   useEffect(() => {
-    i18next.on('languageChanged', (lng) => {
+    const handleLanguageChange = (lng: string) => {
       setLanguage(lng);
-    });
+    };
+
+    i18next.on('languageChanged', handleLanguageChange);
 
     return () => {
-      i18next.off('languageChanged');
+      i18next.off('languageChanged', handleLanguageChange);
     };
   }, []);
 
