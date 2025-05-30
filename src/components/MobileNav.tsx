@@ -81,7 +81,7 @@ const MobileNav = () => {
             <SheetTitle className="text-left">
               <div className="flex items-center space-x-3">
                 <img 
-                  src="/lovable-uploads/bc60906b-3ac3-4db4-9d4f-72c9b42bad28.png" 
+                  src="/lovable-uploads/da5f4622-16fc-4051-b334-91866c1bb783.png" 
                   alt="Direct Democracy Project"
                   className="h-8 w-auto object-contain"
                 />

@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -74,7 +75,7 @@ const Header: React.FC<HeaderProps> = ({ isAuthenticated = false, userName = "Os
             <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
               <div className="h-10 flex items-center justify-center">
                 <img 
-                  src="/lovable-uploads/bc60906b-3ac3-4db4-9d4f-72c9b42bad28.png" 
+                  src="/lovable-uploads/da5f4622-16fc-4051-b334-91866c1bb783.png" 
                   alt="Direct Democracy Project"
                   className="h-10 w-auto object-contain"
                 />

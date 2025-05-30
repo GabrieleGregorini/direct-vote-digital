@@ -53,7 +53,7 @@ const Index = () => {
               <div className="flex justify-center">
                 <div className="w-48 h-48 bg-white rounded-full flex items-center justify-center p-4">
                   <img 
-                    src="/lovable-uploads/bc60906b-3ac3-4db4-9d4f-72c9b42bad28.png" 
+                    src="/lovable-uploads/da5f4622-16fc-4051-b334-91866c1bb783.png" 
                     alt="Direct Democracy Project"
                     className="w-full h-full object-contain"
                   />
