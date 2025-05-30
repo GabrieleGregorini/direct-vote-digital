@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -30,6 +31,12 @@ const SondaggioDetail = () => {
       status: 'attivo',
       promoter: 'Ministero dell\'Economia e delle Finanze',
       whyImportant: 'Questa riforma potrebbe impattare significativamente il potere d\'acquisto delle famiglie italiane e la competitività delle imprese.',
+      questions: [
+        'Sei favorevole a un sistema fiscale progressivo?',
+        'Le detrazioni fiscali dovrebbero essere semplificate?',
+        'Sei d\'accordo con misure per combattere l\'evasione fiscale?',
+        'Dovrebbe esserci una tassa sulle grandi transazioni finanziarie?'
+      ],
       options: [
         { 
           label: 'Favorevole alla riforma completa', 
@@ -83,6 +90,595 @@ const SondaggioDetail = () => {
           { name: 'Superiore', value: 45 },
           { name: 'Laurea', value: 30 },
           { name: 'Post-Laurea', value: 5 }
+        ]
+      }
+    },
+    '2': {
+      id: '2',
+      title: 'Transizione Energetica',
+      description: 'Investimenti per accelerare la transizione verso energie rinnovabili e riduzione emissioni CO2.',
+      fullDescription: 'Il piano per la transizione energetica prevede investimenti massicci in energie rinnovabili, efficientamento energetico degli edifici, sviluppo di tecnologie per l\'idrogeno verde e la graduale dismissione delle fonti fossili entro il 2035. L\'obiettivo è raggiungere la neutralità climatica in linea con gli accordi di Parigi.',
+      category: 'ambiente',
+      status: 'attivo',
+      promoter: 'Ministero dell\'Ambiente e della Sicurezza Energetica',
+      whyImportant: 'La transizione energetica è cruciale per combattere il cambiamento climatico e ridurre la dipendenza energetica dall\'estero.',
+      questions: [
+        'Sei favorevole agli investimenti nelle energie rinnovabili?',
+        'L\'Italia dovrebbe abbandonare i combustibili fossili entro il 2035?',
+        'Sostieni gli incentivi per i veicoli elettrici?',
+        'Dovrebbero esserci regolamentazioni più severe sull\'efficienza energetica degli edifici?',
+        'Sei d\'accordo con lo sviluppo dell\'energia nucleare come fonte di transizione?'
+      ],
+      options: [
+        { 
+          label: 'Incrementare investimenti', 
+          percentage: 73, 
+          votes: 18250,
+          description: 'Aumentare significativamente i fondi per le rinnovabili'
+        },
+        { 
+          label: 'Mantenere livelli attuali', 
+          percentage: 22, 
+          votes: 5500,
+          description: 'Continuare con gli investimenti attuali'
+        },
+        { 
+          label: 'Ridurre investimenti', 
+          percentage: 5, 
+          votes: 1250,
+          description: 'Diminuire i fondi destinati alla transizione'
+        }
+      ],
+      totalVotes: 25000,
+      endDate: '10/03/2025',
+      region: 'Nazionale',
+      demographics: {
+        age: [
+          { name: '18-25', value: 35, color: '#8884d8' },
+          { name: '26-35', value: 30, color: '#82ca9d' },
+          { name: '36-50', value: 20, color: '#ffc658' },
+          { name: '51-65', value: 12, color: '#ff7300' },
+          { name: '65+', value: 3, color: '#0088fe' }
+        ],
+        gender: [
+          { name: 'Maschi', value: 48, color: '#0088fe' },
+          { name: 'Femmine', value: 50, color: '#00c49f' },
+          { name: 'Altro', value: 2, color: '#ffbb28' }
+        ],
+        region: [
+          { name: 'Nord', value: 50 },
+          { name: 'Centro', value: 30 },
+          { name: 'Sud', value: 20 }
+        ],
+        education: [
+          { name: 'Elementare', value: 3 },
+          { name: 'Media', value: 12 },
+          { name: 'Superiore', value: 40 },
+          { name: 'Laurea', value: 35 },
+          { name: 'Post-Laurea', value: 10 }
+        ]
+      }
+    },
+    '3': {
+      id: '3',
+      title: 'Referendum Cittadinanza',
+      description: 'Modifica dei criteri per l\'acquisizione della cittadinanza italiana.',
+      fullDescription: 'Il referendum propone di ridurre da 10 a 5 anni il periodo di residenza legale continuativa richiesto per poter richiedere la cittadinanza italiana. Questa modifica interesserebbe circa 2 milioni di persone attualmente residenti in Italia che potrebbero beneficiare della riduzione dei tempi.',
+      category: 'sociale',
+      status: 'urgente',
+      promoter: 'Ministero dell\'Interno',
+      whyImportant: 'Questa riforma faciliterebbe l\'integrazione di migliaia di persone che vivono e lavorano regolarmente in Italia, migliorando la coesione sociale.',
+      questions: [
+        'Vuoi ridurre il tempo di residenza in Italia da 10 a 5 anni per permettere di richiedere la cittadinanza?'
+      ],
+      options: [
+        { 
+          label: 'Sì, riduzione a 5 anni', 
+          percentage: 47, 
+          votes: 11750,
+          description: 'Favorevole alla riduzione dei tempi di residenza'
+        },
+        { 
+          label: 'No, mantenere 10 anni', 
+          percentage: 38, 
+          votes: 9500,
+          description: 'Contrario alla modifica, mantenere i criteri attuali'
+        },
+        { 
+          label: 'Sì, ma con condizioni aggiuntive', 
+          percentage: 15, 
+          votes: 3750,
+          description: 'Favorevole ma con requisiti supplementari'
+        }
+      ],
+      totalVotes: 25000,
+      endDate: '28/01/2025',
+      region: 'Nazionale',
+      demographics: {
+        age: [
+          { name: '18-25', value: 25, color: '#8884d8' },
+          { name: '26-35', value: 32, color: '#82ca9d' },
+          { name: '36-50', value: 28, color: '#ffc658' },
+          { name: '51-65', value: 12, color: '#ff7300' },
+          { name: '65+', value: 3, color: '#0088fe' }
+        ],
+        gender: [
+          { name: 'Maschi', value: 51, color: '#0088fe' },
+          { name: 'Femmine', value: 47, color: '#00c49f' },
+          { name: 'Altro', value: 2, color: '#ffbb28' }
+        ],
+        region: [
+          { name: 'Nord', value: 55 },
+          { name: 'Centro', value: 25 },
+          { name: 'Sud', value: 20 }
+        ],
+        education: [
+          { name: 'Elementare', value: 8 },
+          { name: 'Media', value: 20 },
+          { name: 'Superiore', value: 42 },
+          { name: 'Laurea', value: 25 },
+          { name: 'Post-Laurea', value: 5 }
+        ]
+      }
+    },
+    '4': {
+      id: '4',
+      title: 'Riforma Pensioni',
+      description: 'Proposta di riforma del sistema pensionistico con età flessibile.',
+      fullDescription: 'La riforma pensionistica propone l\'introduzione di un sistema flessibile che permetta di andare in pensione tra i 62 e i 67 anni, con calcoli proporzionali ai contributi versati. Include anche misure per i lavori usuranti e maggiore tutela per le donne con figli.',
+      category: 'sociale',
+      status: 'attivo',
+      promoter: 'INPS - Istituto Nazionale Previdenza Sociale',
+      whyImportant: 'Il sistema pensionistico italiano necessita di riforme per garantire sostenibilità e equità tra generazioni.',
+      questions: [
+        'Sei favorevole all\'innalzamento dell\'età pensionabile?',
+        'Il sistema contributivo dovrebbe essere rafforzato?',
+        'Sei d\'accordo con misure per favorire il pensionamento anticipato?',
+        'Dovrebbe esserci una pensione minima per tutti i pensionati?'
+      ],
+      options: [
+        { 
+          label: 'Favorevole alla riforma', 
+          percentage: 54, 
+          votes: 13500,
+          description: 'Sostegno al nuovo sistema flessibile'
+        },
+        { 
+          label: 'Contrario alla riforma', 
+          percentage: 38, 
+          votes: 9500,
+          description: 'Opposizione alle modifiche proposte'
+        },
+        { 
+          label: 'Indeciso, serve più informazione', 
+          percentage: 8, 
+          votes: 2000,
+          description: 'Necessità di maggiori dettagli'
+        }
+      ],
+      totalVotes: 25000,
+      endDate: '20/02/2025',
+      region: 'Nazionale',
+      demographics: {
+        age: [
+          { name: '18-25', value: 8, color: '#8884d8' },
+          { name: '26-35', value: 15, color: '#82ca9d' },
+          { name: '36-50', value: 35, color: '#ffc658' },
+          { name: '51-65', value: 35, color: '#ff7300' },
+          { name: '65+', value: 7, color: '#0088fe' }
+        ],
+        gender: [
+          { name: 'Maschi', value: 53, color: '#0088fe' },
+          { name: 'Femmine', value: 45, color: '#00c49f' },
+          { name: 'Altro', value: 2, color: '#ffbb28' }
+        ],
+        region: [
+          { name: 'Nord', value: 42 },
+          { name: 'Centro', value: 28 },
+          { name: 'Sud', value: 30 }
+        ],
+        education: [
+          { name: 'Elementare', value: 12 },
+          { name: 'Media', value: 25 },
+          { name: 'Superiore', value: 40 },
+          { name: 'Laurea', value: 20 },
+          { name: 'Post-Laurea', value: 3 }
+        ]
+      }
+    },
+    '5': {
+      id: '5',
+      title: 'Digitalizzazione PA',
+      description: 'Accelerazione dei processi di digitalizzazione nella Pubblica Amministrazione.',
+      fullDescription: 'Il piano di digitalizzazione della PA prevede la completa trasformazione digitale di tutti i servizi pubblici entro il 2026, con l\'obiettivo di semplificare i rapporti tra cittadini e amministrazione, ridurre i tempi di attesa e migliorare l\'efficienza attraverso l\'uso di intelligenza artificiale e automazione.',
+      category: 'tecnologia',
+      status: 'attivo',
+      promoter: 'Ministero per l\'Innovazione Tecnologica e la Transizione Digitale',
+      whyImportant: 'La digitalizzazione della PA è essenziale per modernizzare il paese e migliorare la qualità dei servizi offerti ai cittadini.',
+      questions: [
+        'Sei favorevole alla digitalizzazione dei servizi pubblici?',
+        'Dovrebbero esserci maggiori investimenti in cybersecurity per la PA?',
+        'Sei d\'accordo con l\'uso dell\'intelligenza artificiale nella PA?',
+        'Dovrebbe esserci più formazione per i dipendenti pubblici sugli strumenti digitali?',
+        'I servizi digitali dovrebbero essere obbligatori o opzionali?'
+      ],
+      options: [
+        { 
+          label: 'Priorità assoluta', 
+          percentage: 68, 
+          votes: 17000,
+          description: 'Digitalizzazione completa e rapida'
+        },
+        { 
+          label: 'Importante ma graduale', 
+          percentage: 25, 
+          votes: 6250,
+          description: 'Transizione progressiva e controllata'
+        },
+        { 
+          label: 'Non prioritario', 
+          percentage: 7, 
+          votes: 1750,
+          description: 'Altre priorità più importanti'
+        }
+      ],
+      totalVotes: 25000,
+      endDate: '05/03/2025',
+      region: 'Nazionale',
+      demographics: {
+        age: [
+          { name: '18-25', value: 40, color: '#8884d8' },
+          { name: '26-35', value: 35, color: '#82ca9d' },
+          { name: '36-50', value: 18, color: '#ffc658' },
+          { name: '51-65', value: 6, color: '#ff7300' },
+          { name: '65+', value: 1, color: '#0088fe' }
+        ],
+        gender: [
+          { name: 'Maschi', value: 55, color: '#0088fe' },
+          { name: 'Femmine', value: 43, color: '#00c49f' },
+          { name: 'Altro', value: 2, color: '#ffbb28' }
+        ],
+        region: [
+          { name: 'Nord', value: 48 },
+          { name: 'Centro', value: 32 },
+          { name: 'Sud', value: 20 }
+        ],
+        education: [
+          { name: 'Elementare', value: 2 },
+          { name: 'Media', value: 8 },
+          { name: 'Superiore', value: 35 },
+          { name: 'Laurea', value: 45 },
+          { name: 'Post-Laurea', value: 10 }
+        ]
+      }
+    },
+    '6': {
+      id: '6',
+      title: 'Sanità Territoriale',
+      description: 'Potenziamento delle strutture sanitarie territoriali e medicina di prossimità.',
+      fullDescription: 'Il piano per la sanità territoriale prevede la creazione di nuove case di comunità, ospedali di comunità e centrali operative territoriali per avvicinare i servizi sanitari ai cittadini, ridurre i ricoveri inappropriati e migliorare la continuità delle cure, specialmente per le patologie croniche.',
+      category: 'sanita',
+      status: 'attivo',
+      promoter: 'Ministero della Salute',
+      whyImportant: 'Il rafforzamento della sanità territoriale è fondamentale per garantire cure più accessibili e ridurre la pressione sugli ospedali.',
+      questions: [
+        'Sei favorevole al potenziamento dei servizi sanitari locali?',
+        'Dovrebbero esserci maggiori investimenti nella telemedicina?',
+        'Sei d\'accordo con misure per ridurre i tempi di attesa per le visite mediche?',
+        'Dovrebbero esserci più fondi per il personale sanitario?',
+        'Le case di comunità dovrebbero essere presenti in ogni comune?'
+      ],
+      options: [
+        { 
+          label: 'Investimenti massicci', 
+          percentage: 71, 
+          votes: 17750,
+          description: 'Aumento significativo delle risorse'
+        },
+        { 
+          label: 'Investimenti mirati', 
+          percentage: 24, 
+          votes: 6000,
+          description: 'Interventi selettivi e graduali'
+        },
+        { 
+          label: 'Mantenere status quo', 
+          percentage: 5, 
+          votes: 1250,
+          description: 'Nessun cambiamento significativo'
+        }
+      ],
+      totalVotes: 25000,
+      endDate: '25/02/2025',
+      region: 'Nazionale',
+      demographics: {
+        age: [
+          { name: '18-25', value: 12, color: '#8884d8' },
+          { name: '26-35', value: 20, color: '#82ca9d' },
+          { name: '36-50', value: 30, color: '#ffc658' },
+          { name: '51-65', value: 28, color: '#ff7300' },
+          { name: '65+', value: 10, color: '#0088fe' }
+        ],
+        gender: [
+          { name: 'Maschi', value: 45, color: '#0088fe' },
+          { name: 'Femmine', value: 53, color: '#00c49f' },
+          { name: 'Altro', value: 2, color: '#ffbb28' }
+        ],
+        region: [
+          { name: 'Nord', value: 35 },
+          { name: 'Centro', value: 25 },
+          { name: 'Sud', value: 40 }
+        ],
+        education: [
+          { name: 'Elementare', value: 15 },
+          { name: 'Media', value: 25 },
+          { name: 'Superiore', value: 35 },
+          { name: 'Laurea', value: 20 },
+          { name: 'Post-Laurea', value: 5 }
+        ]
+      }
+    },
+    '7': {
+      id: '7',
+      title: 'Trasporti Pubblici',
+      description: 'Miglioramento e potenziamento del trasporto pubblico locale.',
+      fullDescription: 'Il piano per i trasporti pubblici prevede investimenti per 50 miliardi in 10 anni per modernizzare metro, autobus e treni regionali, con focus su mezzi elettrici e a idrogeno, nuove linee metropolitane nelle grandi città e miglioramento dei collegamenti tra centri urbani e aree rurali.',
+      category: 'trasporti',
+      status: 'attivo',
+      promoter: 'Ministero delle Infrastrutture e dei Trasporti',
+      whyImportant: 'Il miglioramento dei trasporti pubblici è cruciale per ridurre l\'inquinamento, il traffico e migliorare la qualità della vita urbana.',
+      questions: [
+        'Sei favorevole agli investimenti nel trasporto pubblico?',
+        'Dovrebbero esserci maggiori incentivi per il trasporto sostenibile?',
+        'Sei d\'accordo con misure per ridurre il traffico cittadino?',
+        'Dovrebbero esserci maggiori investimenti nell\'alta velocità ferroviaria?',
+        'I trasporti pubblici dovrebbero essere gratuiti per alcune categorie?'
+      ],
+      options: [
+        { 
+          label: 'Investimenti importanti', 
+          percentage: 64, 
+          votes: 16000,
+          description: 'Aumento significativo dei fondi'
+        },
+        { 
+          label: 'Miglioramenti graduali', 
+          percentage: 28, 
+          votes: 7000,
+          description: 'Sviluppo progressivo e sostenibile'
+        },
+        { 
+          label: 'Non necessario', 
+          percentage: 8, 
+          votes: 2000,
+          description: 'Altre priorità più importanti'
+        }
+      ],
+      totalVotes: 25000,
+      endDate: '15/03/2025',
+      region: 'Nazionale',
+      demographics: {
+        age: [
+          { name: '18-25', value: 30, color: '#8884d8' },
+          { name: '26-35', value: 32, color: '#82ca9d' },
+          { name: '36-50', value: 25, color: '#ffc658' },
+          { name: '51-65', value: 10, color: '#ff7300' },
+          { name: '65+', value: 3, color: '#0088fe' }
+        ],
+        gender: [
+          { name: 'Maschi', value: 52, color: '#0088fe' },
+          { name: 'Femmine', value: 46, color: '#00c49f' },
+          { name: 'Altro', value: 2, color: '#ffbb28' }
+        ],
+        region: [
+          { name: 'Nord', value: 45 },
+          { name: 'Centro', value: 35 },
+          { name: 'Sud', value: 20 }
+        ],
+        education: [
+          { name: 'Elementare', value: 5 },
+          { name: 'Media', value: 18 },
+          { name: 'Superiore', value: 45 },
+          { name: 'Laurea', value: 28 },
+          { name: 'Post-Laurea', value: 4 }
+        ]
+      }
+    },
+    '8': {
+      id: '8',
+      title: 'Scuola Digitale',
+      description: 'Implementazione di tecnologie digitali nell\'educazione scolastica.',
+      fullDescription: 'Il piano scuola digitale prevede la dotazione di tablet per tutti gli studenti, formazione digitale per i docenti, implementazione di piattaforme e-learning, aule multimediali in ogni scuola e connessione internet ultraveloce. L\'obiettivo è preparare gli studenti alle competenze del futuro.',
+      category: 'istruzione',
+      status: 'attivo',
+      promoter: 'Ministero dell\'Istruzione e del Merito',
+      whyImportant: 'La digitalizzazione della scuola è essenziale per preparare le nuove generazioni alle sfide del mondo del lavoro digitale.',
+      questions: [
+        'Sei favorevole all\'uso di strumenti digitali nelle scuole?',
+        'Dovrebbe esserci più formazione per i docenti sugli strumenti digitali?',
+        'Sei d\'accordo con misure per ridurre il divario digitale nelle scuole?',
+        'Dovrebbero esserci maggiori investimenti nelle infrastrutture scolastiche?',
+        'I libri di testo digitali dovrebbero sostituire quelli cartacei?'
+      ],
+      options: [
+        { 
+          label: 'Digitalizzazione completa', 
+          percentage: 52, 
+          votes: 13000,
+          description: 'Transizione totale al digitale'
+        },
+        { 
+          label: 'Approccio misto', 
+          percentage: 39, 
+          votes: 9750,
+          description: 'Combinazione di digitale e tradizionale'
+        },
+        { 
+          label: 'Mantenere tradizionale', 
+          percentage: 9, 
+          votes: 2250,
+          description: 'Privilegiare i metodi classici'
+        }
+      ],
+      totalVotes: 25000,
+      endDate: '12/03/2025',
+      region: 'Nazionale',
+      demographics: {
+        age: [
+          { name: '18-25', value: 45, color: '#8884d8' },
+          { name: '26-35', value: 35, color: '#82ca9d' },
+          { name: '36-50', value: 15, color: '#ffc658' },
+          { name: '51-65', value: 4, color: '#ff7300' },
+          { name: '65+', value: 1, color: '#0088fe' }
+        ],
+        gender: [
+          { name: 'Maschi', value: 48, color: '#0088fe' },
+          { name: 'Femmine', value: 50, color: '#00c49f' },
+          { name: 'Altro', value: 2, color: '#ffbb28' }
+        ],
+        region: [
+          { name: 'Nord', value: 50 },
+          { name: 'Centro', value: 30 },
+          { name: 'Sud', value: 20 }
+        ],
+        education: [
+          { name: 'Elementare', value: 2 },
+          { name: 'Media', value: 10 },
+          { name: 'Superiore', value: 40 },
+          { name: 'Laurea', value: 40 },
+          { name: 'Post-Laurea', value: 8 }
+        ]
+      }
+    },
+    '9': {
+      id: '9',
+      title: 'Sicurezza Urbana',
+      description: 'Strategie per migliorare la sicurezza nei centri urbani.',
+      fullDescription: 'Il piano sicurezza urbana prevede l\'aumento delle forze dell\'ordine, l\'installazione di sistemi di videosorveglianza intelligente, il potenziamento dell\'illuminazione pubblica, programmi di prevenzione sociale e collaborazione con le comunità locali per creare ambienti urbani più sicuri.',
+      category: 'sicurezza',
+      status: 'urgente',
+      promoter: 'Ministero dell\'Interno',
+      whyImportant: 'La sicurezza urbana è fondamentale per garantire la qualità della vita dei cittadini e lo sviluppo economico delle città.',
+      questions: [
+        'Sei favorevole all\'aumento delle forze dell\'ordine nelle aree urbane?',
+        'Dovrebbero esserci maggiori investimenti nei sistemi di sorveglianza?',
+        'Sei d\'accordo con misure per combattere la criminalità?',
+        'Dovrebbero esserci più fondi per programmi sociali di prevenzione del crimine?',
+        'La videosorveglianza dovrebbe essere estesa a tutte le aree pubbliche?'
+      ],
+      options: [
+        { 
+          label: 'Più forze dell\'ordine', 
+          percentage: 43, 
+          votes: 10750,
+          description: 'Aumento del personale di sicurezza'
+        },
+        { 
+          label: 'Tecnologie smart', 
+          percentage: 35, 
+          votes: 8750,
+          description: 'Investimenti in sistemi intelligenti'
+        },
+        { 
+          label: 'Prevenzione sociale', 
+          percentage: 22, 
+          votes: 5500,
+          description: 'Focus su programmi sociali preventivi'
+        }
+      ],
+      totalVotes: 25000,
+      endDate: '30/01/2025',
+      region: 'Nazionale',
+      demographics: {
+        age: [
+          { name: '18-25', value: 15, color: '#8884d8' },
+          { name: '26-35', value: 25, color: '#82ca9d' },
+          { name: '36-50', value: 35, color: '#ffc658' },
+          { name: '51-65', value: 20, color: '#ff7300' },
+          { name: '65+', value: 5, color: '#0088fe' }
+        ],
+        gender: [
+          { name: 'Maschi', value: 58, color: '#0088fe' },
+          { name: 'Femmine', value: 40, color: '#00c49f' },
+          { name: 'Altro', value: 2, color: '#ffbb28' }
+        ],
+        region: [
+          { name: 'Nord', value: 40 },
+          { name: 'Centro', value: 30 },
+          { name: 'Sud', value: 30 }
+        ],
+        education: [
+          { name: 'Elementare', value: 10 },
+          { name: 'Media', value: 25 },
+          { name: 'Superiore', value: 45 },
+          { name: 'Laurea', value: 18 },
+          { name: 'Post-Laurea', value: 2 }
+        ]
+      }
+    },
+    '10': {
+      id: '10',
+      title: 'Agricoltura Sostenibile',
+      description: 'Transizione verso pratiche agricole più sostenibili e rispettose dell\'ambiente.',
+      fullDescription: 'Il piano per l\'agricoltura sostenibile promuove la transizione verso metodi biologici, la riduzione dell\'uso di pesticidi, l\'implementazione di tecnologie precision farming, il sostegno alle filiere corte e locali, e incentivi per pratiche che aumentano la biodiversità e la salute del suolo.',
+      category: 'ambiente',
+      status: 'attivo',
+      promoter: 'Ministero dell\'Agricoltura, Sovranità Alimentare e Foreste',
+      whyImportant: 'L\'agricoltura sostenibile è cruciale per proteggere l\'ambiente, garantire la sicurezza alimentare e preservare la biodiversità per le future generazioni.',
+      questions: [
+        'Sei favorevole alla transizione verso l\'agricoltura sostenibile?',
+        'Dovrebbero esserci maggiori incentivi per l\'agricoltura biologica?',
+        'Sei d\'accordo con la riduzione dell\'uso di pesticidi?',
+        'Dovrebbero esserci maggiori investimenti nella ricerca sull\'agricoltura sostenibile?',
+        'Le filiere corte e locali dovrebbero essere incentivate?'
+      ],
+      options: [
+        { 
+          label: 'Incentivi per bio', 
+          percentage: 58, 
+          votes: 14500,
+          description: 'Maggiori sostegni all\'agricoltura biologica'
+        },
+        { 
+          label: 'Regolamentazione graduale', 
+          percentage: 32, 
+          votes: 8000,
+          description: 'Transizione progressiva e controllata'
+        },
+        { 
+          label: 'Mantenere attuale', 
+          percentage: 10, 
+          votes: 2500,
+          description: 'Nessun cambiamento significativo'
+        }
+      ],
+      totalVotes: 25000,
+      endDate: '18/03/2025',
+      region: 'Nazionale',
+      demographics: {
+        age: [
+          { name: '18-25', value: 28, color: '#8884d8' },
+          { name: '26-35', value: 30, color: '#82ca9d' },
+          { name: '36-50', value: 25, color: '#ffc658' },
+          { name: '51-65', value: 15, color: '#ff7300' },
+          { name: '65+', value: 2, color: '#0088fe' }
+        ],
+        gender: [
+          { name: 'Maschi', value: 45, color: '#0088fe' },
+          { name: 'Femmine', value: 53, color: '#00c49f' },
+          { name: 'Altro', value: 2, color: '#ffbb28' }
+        ],
+        region: [
+          { name: 'Nord', value: 35 },
+          { name: 'Centro', value: 30 },
+          { name: 'Sud', value: 35 }
+        ],
+        education: [
+          { name: 'Elementare', value: 8 },
+          { name: 'Media', value: 20 },
+          { name: 'Superiore', value: 40 },
+          { name: 'Laurea', value: 28 },
+          { name: 'Post-Laurea', value: 4 }
         ]
       }
     }
@@ -163,6 +759,24 @@ const SondaggioDetail = () => {
                 <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                   {poll.fullDescription}
                 </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white dark:bg-gray-800">
+              <CardHeader>
+                <CardTitle className="text-gray-900 dark:text-white">Domande del Sondaggio</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  {poll.questions.map((question: string, index: number) => (
+                    <div key={index} className="flex items-start space-x-3">
+                      <span className="flex-shrink-0 w-6 h-6 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 rounded-full flex items-center justify-center text-sm font-medium">
+                        {index + 1}
+                      </span>
+                      <p className="text-gray-700 dark:text-gray-300">{question}</p>
+                    </div>
+                  ))}
+                </div>
               </CardContent>
             </Card>
 
