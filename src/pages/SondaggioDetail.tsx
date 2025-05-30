@@ -19,6 +19,8 @@ const SondaggioDetail = () => {
   const { t } = useLanguage();
   const [selectedOption, setSelectedOption] = useState('');
   const [hasVoted, setHasVoted] = useState(false);
+  const [questionVotes, setQuestionVotes] = useState<Record<number, string>>({});
+  const [hasVotedQuestions, setHasVotedQuestions] = useState<Record<number, boolean>>({});
 
   // Mock data per i sondaggi estesi
   const pollsData: Record<string, any> = {
@@ -36,6 +38,12 @@ const SondaggioDetail = () => {
         'Le detrazioni fiscali dovrebbero essere semplificate?',
         'Sei d\'accordo con misure per combattere l\'evasione fiscale?',
         'Dovrebbe esserci una tassa sulle grandi transazioni finanziarie?'
+      ],
+      questionOptions: [
+        ['Molto favorevole', 'Favorevole', 'Neutrale', 'Contrario', 'Molto contrario'],
+        ['Sì, drasticamente', 'Sì, gradualmente', 'No, sono già semplici', 'No, serve più complessità'],
+        ['Sì, misure severe', 'Sì, misure moderate', 'No, troppo controllo', 'Non so'],
+        ['Sì, necessaria', 'Sì, ma limitata', 'No, dannosa', 'Non so']
       ],
       options: [
         { 
@@ -109,6 +117,13 @@ const SondaggioDetail = () => {
         'Dovrebbero esserci regolamentazioni più severe sull\'efficienza energetica degli edifici?',
         'Sei d\'accordo con lo sviluppo dell\'energia nucleare come fonte di transizione?'
       ],
+      questionOptions: [
+        ['Sì, massimi investimenti', 'Sì, investimenti graduali', 'Solo se economicamente vantaggiosi', 'No, troppo costosi'],
+        ['Sì, entro il 2035', 'Sì, ma più gradualmente', 'Solo parzialmente', 'No, impossibile'],
+        ['Sì, incentivi forti', 'Sì, incentivi moderati', 'Solo per alcune categorie', 'No, mercato libero'],
+        ['Sì, regole severe', 'Sì, regole moderate', 'Solo per nuovi edifici', 'No, troppo vincolante'],
+        ['Sì, necessario', 'Sì, ma con cautela', 'Solo come ultimo resort', 'No, troppo rischioso']
+      ],
       options: [
         { 
           label: 'Incrementare investimenti', 
@@ -170,6 +185,9 @@ const SondaggioDetail = () => {
       whyImportant: 'Questa riforma faciliterebbe l\'integrazione di migliaia di persone che vivono e lavorano regolarmente in Italia, migliorando la coesione sociale.',
       questions: [
         'Vuoi ridurre il tempo di residenza in Italia da 10 a 5 anni per permettere di richiedere la cittadinanza?'
+      ],
+      questionOptions: [
+        ['Sì, riduzione a 5 anni', 'No, mantenere 10 anni', 'Sì, ma con condizioni aggiuntive']
       ],
       options: [
         { 
@@ -235,6 +253,12 @@ const SondaggioDetail = () => {
         'Il sistema contributivo dovrebbe essere rafforzato?',
         'Sei d\'accordo con misure per favorire il pensionamento anticipato?',
         'Dovrebbe esserci una pensione minima per tutti i pensionati?'
+      ],
+      questionOptions: [
+        ['Sì, necessario', 'Sì, ma gradualmente', 'No, età attuale va bene', 'No, dovrebbe diminuire'],
+        ['Sì, completamente', 'Sì, parzialmente', 'No, mantenere misto', 'Non so'],
+        ['Sì, per tutti', 'Sì, per lavori usuranti', 'Solo in casi speciali', 'No, controproducente'],
+        ['Sì, pensione dignitosa', 'Sì, minimo di sussistenza', 'Solo per chi ne ha bisogno', 'No, sistema contributivo puro']
       ],
       options: [
         { 
@@ -302,6 +326,13 @@ const SondaggioDetail = () => {
         'Dovrebbe esserci più formazione per i dipendenti pubblici sugli strumenti digitali?',
         'I servizi digitali dovrebbero essere obbligatori o opzionali?'
       ],
+      questionOptions: [
+        ['Sì, completa digitalizzazione', 'Sì, ma graduale', 'Solo per alcuni servizi', 'No, preferisco analogico'],
+        ['Sì, investimenti massicci', 'Sì, investimenti moderati', 'Solo se necessario', 'Non prioritario'],
+        ['Sì, ampio utilizzo', 'Sì, utilizzo limitato', 'Solo per compiti semplici', 'No, troppo rischioso'],
+        ['Sì, formazione intensiva', 'Sì, formazione graduale', 'Solo per chi lo richiede', 'Non necessaria'],
+        ['Obbligatori per tutti', 'Obbligatori per alcuni', 'Sempre opzionali', 'Dipende dal servizio']
+      ],
       options: [
         { 
           label: 'Priorità assoluta', 
@@ -367,6 +398,13 @@ const SondaggioDetail = () => {
         'Sei d\'accordo con misure per ridurre i tempi di attesa per le visite mediche?',
         'Dovrebbero esserci più fondi per il personale sanitario?',
         'Le case di comunità dovrebbero essere presenti in ogni comune?'
+      ],
+      questionOptions: [
+        ['Sì, potenziamento massimo', 'Sì, potenziamento graduale', 'Solo dove necessario', 'No, ospedali bastano'],
+        ['Sì, investimenti alti', 'Sì, investimenti moderati', 'Solo per emergenze', 'No, preferisco presenza fisica'],
+        ['Sì, priorità assoluta', 'Sì, importante', 'Moderatamente importante', 'Non prioritario'],
+        ['Sì, aumenti significativi', 'Sì, aumenti moderati', 'Solo per alcune categorie', 'Fondi attuali sufficienti'],
+        ['Sì, in ogni comune', 'Sì, ma solo nei comuni più grandi', 'Solo dove mancano servizi', 'No, troppo costoso']
       ],
       options: [
         { 
@@ -434,6 +472,13 @@ const SondaggioDetail = () => {
         'Dovrebbero esserci maggiori investimenti nell\'alta velocità ferroviaria?',
         'I trasporti pubblici dovrebbero essere gratuiti per alcune categorie?'
       ],
+      questionOptions: [
+        ['Sì, investimenti massicci', 'Sì, investimenti moderati', 'Solo dove necessario', 'No, sprechi di denaro'],
+        ['Sì, incentivi forti', 'Sì, incentivi moderati', 'Solo per alcune categorie', 'No, libertà di scelta'],
+        ['Sì, misure severe', 'Sì, misure moderate', 'Solo in centro città', 'No, limitano libertà'],
+        ['Sì, priorità nazionale', 'Sì, importante', 'Solo alcune tratte', 'No, non prioritario'],
+        ['Sì, gratuiti per tutti', 'Sì, per studenti e anziani', 'Solo per chi ha difficoltà economiche', 'No, ognuno deve pagare']
+      ],
       options: [
         { 
           label: 'Investimenti importanti', 
@@ -499,6 +544,13 @@ const SondaggioDetail = () => {
         'Sei d\'accordo con misure per ridurre il divario digitale nelle scuole?',
         'Dovrebbero esserci maggiori investimenti nelle infrastrutture scolastiche?',
         'I libri di testo digitali dovrebbero sostituire quelli cartacei?'
+      ],
+      questionOptions: [
+        ['Sì, uso massivo', 'Sì, uso moderato', 'Solo per alcune materie', 'No, preferisco metodi tradizionali'],
+        ['Sì, formazione intensiva', 'Sì, formazione graduale', 'Solo per chi lo richiede', 'Non necessaria'],
+        ['Sì, priorità assoluta', 'Sì, importante', 'Solo dove più grave', 'Non è un problema'],
+        ['Sì, investimenti massicci', 'Sì, investimenti mirati', 'Solo per manutenzione', 'Sufficienti quelli attuali'],
+        ['Sì, completamente digitali', 'Sì, ma mantenere alcuni cartacei', 'Solo per alcune materie', 'No, mantenere cartacei']
       ],
       options: [
         { 
@@ -566,6 +618,13 @@ const SondaggioDetail = () => {
         'Dovrebbero esserci più fondi per programmi sociali di prevenzione del crimine?',
         'La videosorveglianza dovrebbe essere estesa a tutte le aree pubbliche?'
       ],
+      questionOptions: [
+        ['Sì, aumento significativo', 'Sì, aumento moderato', 'Solo in zone critiche', 'No, sufficienti ora'],
+        ['Sì, investimenti massicci', 'Sì, investimenti mirati', 'Solo dove necessario', 'No, troppa sorveglianza'],
+        ['Sì, misure severe', 'Sì, misure equilibrate', 'Solo per crimini gravi', 'Focus su prevenzione'],
+        ['Sì, più fondi sociali', 'Sì, alcuni fondi', 'Solo programmi efficaci', 'No, non funzionano'],
+        ['Sì, ovunque', 'Sì, ma con limiti', 'Solo zone sensibili', 'No, troppa invasività']
+      ],
       options: [
         { 
           label: 'Più forze dell\'ordine', 
@@ -631,6 +690,13 @@ const SondaggioDetail = () => {
         'Sei d\'accordo con la riduzione dell\'uso di pesticidi?',
         'Dovrebbero esserci maggiori investimenti nella ricerca sull\'agricoltura sostenibile?',
         'Le filiere corte e locali dovrebbero essere incentivate?'
+      ],
+      questionOptions: [
+        ['Sì, transizione completa', 'Sì, transizione graduale', 'Solo dove possibile', 'No, troppo costosa'],
+        ['Sì, incentivi forti', 'Sì, incentivi moderati', 'Solo per piccoli produttori', 'No, mercato libero'],
+        ['Sì, riduzione drastica', 'Sì, riduzione graduale', 'Solo pesticidi più tossici', 'No, necessari per produzione'],
+        ['Sì, investimenti massicci', 'Sì, investimenti mirati', 'Solo ricerca privata', 'Non prioritario'],
+        ['Sì, incentivi forti', 'Sì, incentivi moderati', 'Solo dove mancano alternative', 'No, libero mercato']
       ],
       options: [
         { 
@@ -706,6 +772,18 @@ const SondaggioDetail = () => {
     }
   };
 
+  const handleQuestionVote = (questionIndex: number, option: string) => {
+    setQuestionVotes(prev => ({
+      ...prev,
+      [questionIndex]: option
+    }));
+    setHasVotedQuestions(prev => ({
+      ...prev,
+      [questionIndex]: true
+    }));
+    console.log(`Voto domanda ${questionIndex + 1}:`, option);
+  };
+
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'attivo': return 'bg-green-500';
@@ -762,23 +840,65 @@ const SondaggioDetail = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-white dark:bg-gray-800">
-              <CardHeader>
-                <CardTitle className="text-gray-900 dark:text-white">Domande del Sondaggio</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
-                  {poll.questions.map((question: string, index: number) => (
-                    <div key={index} className="flex items-start space-x-3">
-                      <span className="flex-shrink-0 w-6 h-6 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 rounded-full flex items-center justify-center text-sm font-medium">
-                        {index + 1}
-                      </span>
-                      <p className="text-gray-700 dark:text-gray-300">{question}</p>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+            {poll.id !== '3' && (
+              <Card className="bg-white dark:bg-gray-800">
+                <CardHeader>
+                  <CardTitle className="text-gray-900 dark:text-white">Vota alle Domande Specifiche</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-6">
+                    {poll.questions.map((question: string, questionIndex: number) => (
+                      <div key={questionIndex} className="border-l-4 border-blue-500 pl-4 space-y-4">
+                        <h4 className="font-semibold text-gray-900 dark:text-white">
+                          {questionIndex + 1}. {question}
+                        </h4>
+                        
+                        {!hasVotedQuestions[questionIndex] ? (
+                          <div className="space-y-3">
+                            <RadioGroup 
+                              value={questionVotes[questionIndex] || ''} 
+                              onValueChange={(value) => setQuestionVotes(prev => ({...prev, [questionIndex]: value}))}
+                            >
+                              {poll.questionOptions[questionIndex].map((option: string, optionIndex: number) => (
+                                <div key={optionIndex} className="flex items-center space-x-2">
+                                  <RadioGroupItem value={option} id={`q${questionIndex}-option-${optionIndex}`} />
+                                  <Label htmlFor={`q${questionIndex}-option-${optionIndex}`} className="text-sm dark:text-gray-300">
+                                    {option}
+                                  </Label>
+                                </div>
+                              ))}
+                            </RadioGroup>
+                            
+                            <Button 
+                              onClick={() => handleQuestionVote(questionIndex, questionVotes[questionIndex])}
+                              disabled={!questionVotes[questionIndex]}
+                              size="sm"
+                              className="bg-blue-600 hover:bg-blue-700 text-white"
+                            >
+                              Vota per questa domanda
+                            </Button>
+                          </div>
+                        ) : (
+                          <div className="bg-green-50 dark:bg-green-900/20 p-3 rounded-lg">
+                            <div className="flex items-center space-x-2">
+                              <div className="text-green-600 dark:text-green-400 text-lg">✓</div>
+                              <div>
+                                <p className="text-sm text-green-700 dark:text-green-300 font-medium">
+                                  Voto registrato!
+                                </p>
+                                <p className="text-xs text-green-600 dark:text-green-400">
+                                  Hai votato: <strong>{questionVotes[questionIndex]}</strong>
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            )}
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Card className="bg-white dark:bg-gray-800">
@@ -943,7 +1063,7 @@ const SondaggioDetail = () => {
             <Card className="bg-white dark:bg-gray-800">
               <CardHeader>
                 <CardTitle className="text-gray-900 dark:text-white">
-                  {hasVoted ? 'Voto Registrato' : 'Esprimi il tuo voto'}
+                  {hasVoted ? 'Voto Generale Registrato' : 'Esprimi il tuo voto generale'}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -965,14 +1085,14 @@ const SondaggioDetail = () => {
                       disabled={!selectedOption}
                       className="w-full bg-blue-600 hover:bg-blue-700 text-white"
                     >
-                      Invia Voto
+                      Invia Voto Generale
                     </Button>
                   </div>
                 ) : (
                   <div className="text-center space-y-4">
                     <div className="text-green-600 dark:text-green-400 text-5xl">✓</div>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      Grazie per aver partecipato! Il tuo voto è stato registrato.
+                      Grazie per aver partecipato! Il tuo voto generale è stato registrato.
                     </p>
                     <p className="text-xs text-gray-500 dark:text-gray-500">
                       Hai votato: <strong>{selectedOption}</strong>
